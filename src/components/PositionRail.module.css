@@ -1,0 +1,107 @@
+.rail {
+  position: fixed;
+  right: var(--gutter);
+  bottom: var(--s-6);
+  z-index: 30;
+  display: flex;
+  align-items: flex-end;
+  gap: var(--s-5);
+  color: var(--ink);
+  mix-blend-mode: difference;
+  transition: opacity 400ms ease;
+}
+
+.rail[data-hidden='true'] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.readout {
+  display: grid;
+  justify-items: end;
+  gap: 2px;
+  text-align: right;
+}
+
+.readout :global(.measure) {
+  color: var(--z9);
+}
+
+.num {
+  color: var(--z10);
+}
+
+.of {
+  color: var(--z7);
+}
+
+.label {
+  color: var(--z10) !important;
+  animation: label-in 520ms var(--ease-out);
+}
+
+@keyframes label-in {
+  from {
+    opacity: 0;
+    filter: blur(3px);
+    transform: translateY(4px);
+  }
+}
+
+.ticks {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.tick {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 28px;
+  height: 11px;
+}
+
+.tick::before {
+  content: '';
+  display: block;
+  width: 10px;
+  height: var(--hairline);
+  background: var(--z7);
+  transition:
+    width 420ms var(--ease-out),
+    background-color 200ms ease;
+}
+
+.tick[aria-current='step']::before {
+  width: 26px;
+  background: var(--z10);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tick:hover::before {
+    width: 18px;
+    background: var(--z10);
+  }
+}
+
+@media (max-width: 767px) {
+  .rail {
+    left: var(--gutter);
+    right: auto;
+    bottom: var(--s-4);
+  }
+  .readout {
+    justify-items: start;
+    text-align: left;
+  }
+  .ticks {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .label {
+    animation: none;
+  }
+}

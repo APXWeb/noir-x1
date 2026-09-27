@@ -1,0 +1,91 @@
+.cursor {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .cursor {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 95;
+    pointer-events: none;
+    mix-blend-mode: difference;
+    color: var(--z10);
+  }
+}
+
+.dot,
+.ring {
+  position: fixed;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.dot[data-visible='true'],
+.ring[data-visible='true'] {
+  opacity: 1;
+}
+
+.dot::before {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  margin: -2px 0 0 -2px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.ring::before {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  margin: -15px 0 0 -15px;
+  border-radius: 50%;
+  border: var(--hairline) solid currentColor;
+  opacity: 0.55;
+  transition:
+    transform 380ms var(--ease-out),
+    opacity 200ms ease;
+}
+
+.ring[data-state='link']::before {
+  transform: scale(1.7);
+  opacity: 1;
+}
+
+.ring[data-pressed='true']::before {
+  transform: scale(0.8);
+}
+
+.ring[data-state='link'][data-pressed='true']::before {
+  transform: scale(1.5);
+}
+
+.drag {
+  position: absolute;
+  left: 26px;
+  top: -6px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition:
+    opacity 200ms ease,
+    transform 300ms var(--ease-out);
+}
+
+.cursor[data-mode='explore'] .ring:not([data-state='link']) .drag {
+  opacity: 1;
+  transform: none;
+}
+
+.cursor[data-mode='explore'] .ring:not([data-state='link'])::before {
+  transform: scale(2.2);
+  opacity: 0.8;
+}

@@ -1,0 +1,42 @@
+.scene {
+  --len: 240svh;
+}
+
+.title {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100%;
+  font-size: clamp(3rem, 12.4vw, 14rem);
+  white-space: nowrap;
+}
+
+.w1,
+.w2,
+.w3 {
+  display: block;
+}
+
+.w1 {
+  justify-self: start;
+}
+
+.w2 {
+  align-self: center;
+  justify-self: end;
+  color: var(--z5);
+}
+
+.w3 {
+  justify-self: center;
+  color: var(--z3);
+}
+
+@media (max-width: 767px) {
+  .title {
+    font-size: clamp(2.4rem, 13vw, 4rem);
+  }
+  .w2 {
+    align-self: end;
+    margin-bottom: var(--s-4);
+  }
+}

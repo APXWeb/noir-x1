@@ -1,0 +1,53 @@
+.scene {
+  --len: 200svh;
+}
+
+.text {
+  align-self: center;
+  justify-self: end;
+  display: grid;
+  gap: var(--s-5);
+  width: min(42%, 36rem);
+}
+
+.figure {
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 125;
+  font-weight: 300;
+  font-size: clamp(4rem, 1rem + 9vw, 11rem);
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+  color: var(--z10);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: var(--s-4);
+}
+
+.figure span {
+  font-family: var(--font-mono);
+  font-size: var(--t-small);
+  font-weight: 450;
+  letter-spacing: 0.1em;
+  color: var(--signal);
+  margin-left: 0.6em;
+  vertical-align: top;
+}
+
+.title {
+  font-size: clamp(2rem, 1rem + 2.8vw, 4rem);
+}
+
+@media (max-width: 767px) {
+  .text {
+    align-self: end;
+    justify-self: stretch;
+    width: 100%;
+    gap: var(--s-3);
+  }
+  .figure {
+    font-size: clamp(3.5rem, 20vw, 6rem);
+    margin-bottom: 0;
+  }
+  .title {
+    font-size: clamp(1.9rem, 9vw, 2.6rem);
+  }
+}

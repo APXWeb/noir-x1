@@ -1,0 +1,89 @@
+.callout {
+  --facing: 1;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 20;
+  pointer-events: none;
+  color: var(--z10);
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+
+.callout[data-active='true'] {
+  opacity: var(--facing);
+}
+
+.marker {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  margin: -5.5px 0 0 -5.5px;
+  border: var(--hairline) solid var(--signal);
+  border-radius: 50%;
+  transform: scale(0.4);
+  transition: transform 600ms var(--ease-out);
+}
+
+.marker::after {
+  content: '';
+  position: absolute;
+  inset: 3.5px;
+  border-radius: 50%;
+  background: var(--signal);
+}
+
+.callout[data-active='true'] .marker {
+  transform: scale(1);
+}
+
+.svg {
+  position: absolute;
+  overflow: visible;
+}
+
+.path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1;
+  stroke-opacity: 0.7;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  vector-effect: non-scaling-stroke;
+  transition: stroke-dashoffset 900ms var(--ease-out) 120ms;
+}
+
+.callout[data-active='true'] .path {
+  stroke-dashoffset: 0;
+}
+
+.label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: grid;
+  gap: 2px;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums slashed-zero;
+}
+
+.name {
+  color: var(--z7);
+}
+
+.value {
+  color: var(--z10);
+  font-size: var(--t-small);
+  letter-spacing: 0.06em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .path,
+  .marker {
+    transition: none;
+  }
+}

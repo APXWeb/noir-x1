@@ -1,0 +1,288 @@
+/* The overlay sits above the stage but lets drags through to it. */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  pointer-events: none;
+  color: var(--z10);
+  animation: overlay-in 700ms var(--ease-out) both;
+}
+
+.overlay button {
+  pointer-events: auto;
+}
+
+@keyframes overlay-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.top {
+  position: absolute;
+  inset: 0 var(--gutter) auto;
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: var(--t-small);
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 118;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.close {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  min-height: 44px;
+  padding-inline: var(--s-2);
+  margin-right: calc(var(--s-2) * -1);
+}
+.close :global(.measure) {
+  color: var(--z9);
+}
+.close svg {
+  width: 12px;
+  height: 12px;
+  transition: transform 400ms var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .close:hover svg {
+    transform: rotate(90deg);
+  }
+}
+
+/* Hotspot pins */
+.pin {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 44px;
+  height: 44px;
+  margin: -22px 0 0 -22px;
+  display: grid;
+  place-items: center;
+  transition: opacity 200ms ease;
+}
+
+.pin[data-hidden='true'] {
+  pointer-events: none;
+}
+
+.pinDot {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: var(--hairline) solid var(--z10);
+  background: color-mix(in oklab, var(--z0) 40%, transparent);
+  transition:
+    transform 400ms var(--ease-out),
+    background-color 200ms ease,
+    border-color 200ms ease;
+}
+
+.pinDot::after {
+  content: '';
+  display: block;
+  width: 3px;
+  height: 3px;
+  margin: 4px auto;
+  border-radius: 50%;
+  background: var(--z10);
+}
+
+.pin::before {
+  content: '';
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: var(--hairline) solid var(--z10);
+  opacity: 0;
+  animation: pin-pulse 2.6s var(--ease-out) infinite;
+}
+
+@keyframes pin-pulse {
+  0% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  70%,
+  100% {
+    opacity: 0;
+    transform: scale(2.6);
+  }
+}
+
+.pinLabel {
+  position: absolute;
+  left: 34px;
+  top: 50%;
+  translate: 0 -50%;
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition:
+    opacity 200ms ease,
+    transform 300ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .pin:hover .pinDot {
+    transform: scale(1.25);
+  }
+  .pin:hover .pinLabel {
+    opacity: 1;
+    transform: none;
+  }
+}
+.pin:focus-visible .pinLabel {
+  opacity: 1;
+  transform: none;
+}
+
+.pin[aria-pressed='true'] .pinDot {
+  border-color: var(--signal);
+  background: var(--signal);
+  transform: scale(1.15);
+}
+.pin[aria-pressed='true'] .pinLabel {
+  opacity: 1;
+  transform: none;
+}
+.pin[aria-pressed='true']::before {
+  animation: none;
+}
+
+/* Detail panel */
+.panel {
+  position: absolute;
+  right: var(--gutter);
+  bottom: var(--s-7);
+  width: min(22rem, calc(100vw - 2 * var(--gutter)));
+  pointer-events: none;
+}
+
+.panelInner {
+  display: grid;
+  gap: var(--s-3);
+  padding-top: var(--s-4);
+  border-top: var(--hairline) solid var(--rule-strong);
+  animation: panel-in 520ms var(--ease-out) both;
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(4px);
+  }
+}
+
+.panelTitle {
+  text-transform: uppercase;
+  font-variation-settings: 'wdth' 125;
+}
+
+/* View controls */
+.controls {
+  position: absolute;
+  left: var(--gutter);
+  bottom: var(--s-7);
+  display: flex;
+  gap: var(--s-1);
+}
+
+.ctrl {
+  display: grid;
+  place-items: center;
+  min-width: 44px;
+  height: 44px;
+  border: var(--hairline) solid var(--rule);
+  border-radius: 999px;
+  color: var(--z9);
+  transition:
+    border-color 200ms ease,
+    color 200ms ease,
+    transform var(--dur-press) var(--ease-out);
+}
+.ctrl svg {
+  width: 12px;
+  height: 12px;
+}
+.ctrl:active {
+  transform: scale(0.94);
+}
+@media (hover: hover) and (pointer: fine) {
+  .ctrl:hover {
+    color: var(--z10);
+    border-color: var(--rule-strong);
+  }
+}
+.reset {
+  padding-inline: var(--s-4);
+  margin-left: var(--s-2);
+}
+
+.hint {
+  position: absolute;
+  left: 50%;
+  top: calc(var(--header-h) + var(--s-5));
+  translate: -50% 0;
+  color: var(--z9);
+  white-space: nowrap;
+  transition: opacity 600ms ease;
+}
+.hint[data-show='false'] {
+  opacity: 0;
+}
+
+@media (max-width: 767px) {
+  .controls {
+    left: var(--gutter);
+    right: var(--gutter);
+    bottom: var(--s-5);
+    justify-content: space-between;
+  }
+  .ctrl {
+    min-width: 40px;
+  }
+  .reset {
+    margin-left: 0;
+    padding-inline: var(--s-3);
+  }
+  .panel {
+    bottom: calc(var(--s-5) + 60px);
+  }
+  .hint {
+    white-space: normal;
+    text-align: center;
+    width: calc(100vw - 2 * var(--gutter));
+  }
+  .pinLabel {
+    display: none;
+  }
+  .pin[aria-pressed='true'] .pinLabel {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay,
+  .panelInner {
+    animation: none;
+  }
+  .pin::before {
+    animation: none;
+  }
+}

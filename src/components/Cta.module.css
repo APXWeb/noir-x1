@@ -1,0 +1,76 @@
+.cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-4);
+  min-height: 48px;
+  padding-block: var(--s-3);
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 120;
+  font-weight: 600;
+  font-size: var(--t-small);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  transition: transform var(--dur-press) var(--ease-out);
+}
+
+.cta:active {
+  transform: scale(0.97);
+}
+
+.rule {
+  position: relative;
+  display: block;
+  width: 56px;
+  height: 12px;
+  transition: width 520ms var(--ease-out);
+}
+
+.rule::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 1px;
+  top: 50%;
+  height: var(--hairline);
+  background: currentColor;
+}
+
+.head {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 12px;
+  height: 12px;
+}
+
+.head path:first-child {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cta:hover .rule {
+    width: 88px;
+  }
+}
+.cta:focus-visible .rule {
+  width: 88px;
+}
+
+.quiet {
+  color: var(--ink-2);
+}
+
+.quiet .rule {
+  width: 28px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .quiet:hover {
+    color: var(--ink);
+  }
+  .quiet:hover .rule {
+    width: 44px;
+  }
+}

@@ -1,0 +1,78 @@
+/* Display: Archivo at full expanded width, capitals, tight leading. */
+.display {
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' var(--wdth-display);
+  font-weight: 560;
+  font-size: var(--t-display);
+  line-height: 0.86;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.display--mega {
+  font-size: var(--t-mega);
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+}
+
+.h2 {
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' var(--wdth-display);
+  font-weight: 540;
+  font-size: var(--t-h2);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.h3 {
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 112;
+  font-weight: 480;
+  font-size: var(--t-h3);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.lead {
+  font-size: var(--t-lead);
+  line-height: 1.45;
+  font-weight: 360;
+  color: var(--ink-2);
+  max-width: 34ch;
+  text-wrap: pretty;
+}
+
+.body {
+  color: var(--ink-2);
+  max-width: 44ch;
+  text-wrap: pretty;
+}
+
+/* Measurement: Geist Mono, only for values that are measured. */
+.measure {
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  font-weight: 450;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums slashed-zero;
+  color: var(--ink-3);
+  line-height: 1.4;
+}
+
+/* Masked line reveal scaffolding (used by SplitLines). */
+.line {
+  display: block;
+  overflow: clip;
+  overflow-clip-margin: 0.08em;
+  padding-bottom: 0.04em;
+  margin-bottom: -0.04em;
+}
+.line__inner {
+  display: block;
+  will-change: transform;
+}

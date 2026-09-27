@@ -1,0 +1,47 @@
+.scene {
+  --len: 170svh;
+}
+
+.title {
+  align-self: center;
+  display: grid;
+  justify-items: center;
+  font-size: clamp(3.4rem, 15.5vw, 19rem);
+  line-height: 0.8;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.l1,
+.l2 {
+  display: block;
+}
+
+.l2 {
+  color: var(--z5);
+}
+
+.actions {
+  align-self: end;
+  justify-self: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--s-4) var(--s-8);
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 767px) {
+  .title {
+    align-self: start;
+    margin-top: 8svh;
+    font-size: clamp(3rem, 17vw, 5rem);
+    gap: 40svh;
+  }
+  .actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+}

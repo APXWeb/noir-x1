@@ -1,0 +1,27 @@
+.scene {
+  --len: 200svh;
+}
+
+.text {
+  align-self: center;
+  justify-self: end;
+  display: grid;
+  gap: var(--s-6);
+  width: min(46%, 40rem);
+}
+
+.title {
+  font-size: clamp(2.5rem, 1rem + 4.6vw, 6.25rem);
+}
+
+@media (max-width: 767px) {
+  .text {
+    align-self: end;
+    justify-self: stretch;
+    width: 100%;
+    gap: var(--s-4);
+  }
+  .title {
+    font-size: clamp(2.2rem, 10.5vw, 3.2rem);
+  }
+}

@@ -1,0 +1,177 @@
+.scene {
+  --len: 220svh;
+}
+
+.nameWrap {
+  align-self: center;
+  justify-self: start;
+  margin-left: -0.04em;
+  pointer-events: none;
+}
+
+.name {
+  display: block;
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 125;
+  font-weight: 620;
+  font-size: clamp(3.5rem, 15.5vw, 20rem);
+  line-height: 0.8;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+  color: var(--z3);
+  animation: name-set 900ms var(--ease-out) both;
+}
+
+@keyframes name-set {
+  from {
+    opacity: 0;
+    filter: blur(16px);
+    letter-spacing: 0.08em;
+  }
+}
+
+.controls {
+  align-self: end;
+  display: grid;
+  gap: var(--s-5);
+  max-width: 30rem;
+  position: relative;
+  z-index: 2;
+}
+
+.title {
+  color: var(--ink);
+}
+
+.group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+
+.option {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  min-height: 44px;
+  padding: var(--s-2) var(--s-4) var(--s-2) var(--s-3);
+  border: var(--hairline) solid var(--rule);
+  border-radius: 999px;
+  color: var(--ink-2);
+  transition:
+    border-color 240ms ease,
+    color 240ms ease,
+    transform var(--dur-press) var(--ease-out);
+}
+
+.option:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .option:hover {
+    color: var(--ink);
+    border-color: var(--rule-strong);
+  }
+}
+
+.option[aria-checked='true'] {
+  color: var(--ink);
+  border-color: var(--z10);
+}
+
+.swatch {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--swatch);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--z10) 30%, transparent);
+}
+
+/* Selected: a signal index mark, the same notch as the logo's ring. */
+.swatch::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -5px;
+  width: 1.5px;
+  height: 4px;
+  margin-left: -0.75px;
+  background: var(--signal);
+  opacity: 0;
+  transform: translateY(3px);
+  transition:
+    opacity 200ms ease,
+    transform 360ms var(--ease-out);
+}
+
+.option[aria-checked='true'] .swatch::after {
+  opacity: 1;
+  transform: none;
+}
+
+.optionName {
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 118;
+  font-size: var(--t-micro);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.readout {
+  display: grid;
+  gap: var(--s-3);
+  min-height: 6.5rem;
+}
+
+.line {
+  animation: line-in 600ms var(--ease-out) both;
+}
+
+@keyframes line-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+.value {
+  color: var(--ink);
+  margin-left: var(--s-2);
+}
+
+@media (max-width: 767px) {
+  .nameWrap {
+    align-self: start;
+    margin-top: 38svh;
+  }
+  .name {
+    font-size: clamp(3rem, 17vw, 5rem);
+  }
+  .group {
+    gap: var(--s-2);
+  }
+  .option {
+    padding-inline: var(--s-2) var(--s-3);
+  }
+  .readout {
+    min-height: 5.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .name {
+    animation: name-fade 300ms ease both;
+  }
+  .line {
+    animation: none;
+  }
+}
+
+@keyframes name-fade {
+  from {
+    opacity: 0;
+  }
+}

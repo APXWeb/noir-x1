@@ -1,0 +1,83 @@
+/*
+ * NOIR — design tokens.
+ * One tonal ramp (11 zones, graphite → bone) carries every surface and ink.
+ * One signal colour, reserved for the seconds hand and live measurement marks.
+ */
+:root {
+  /* Zone ramp */
+  --z0: #0c0c0d;
+  --z1: #131315;
+  --z2: #1b1b1e;
+  --z3: #252528;
+  --z4: #333337;
+  --z5: #48484c;
+  --z6: #6c6a67;
+  --z7: #8f8c87;
+  --z8: #b2aea7;
+  --z9: #d3cfc8;
+  --z10: #ece8e1;
+
+  --signal: #ff5a1f;
+
+  /* Semantic roles (dark theme is the default world) */
+  --ground: var(--z0);
+  --ink: var(--z10);
+  --ink-2: var(--z8);
+  --ink-3: var(--z7);
+  --rule: color-mix(in oklab, var(--z10) 16%, transparent);
+  --rule-strong: color-mix(in oklab, var(--z10) 34%, transparent);
+
+  /* Type */
+  --font-display: 'Archivo Variable', 'Archivo', system-ui, sans-serif;
+  --font-body: 'Archivo Variable', 'Archivo', system-ui, sans-serif;
+  --font-mono: 'Geist Mono Variable', 'Geist Mono', ui-monospace, monospace;
+
+  --wdth-display: 125;
+  --wdth-body: 100;
+
+  /* Fluid type scale */
+  --t-micro: 0.6875rem; /* 11px measurement labels */
+  --t-small: 0.8125rem; /* 13px */
+  --t-body: clamp(0.9375rem, 0.88rem + 0.2vw, 1.0625rem);
+  --t-lead: clamp(1.0625rem, 0.95rem + 0.45vw, 1.3125rem);
+  --t-h3: clamp(1.5rem, 1.1rem + 1.4vw, 2.5rem);
+  --t-h2: clamp(2.5rem, 1.2rem + 5.2vw, 7rem);
+  --t-display: clamp(3.25rem, 0.6rem + 10.4vw, 12.5rem);
+  --t-mega: clamp(5rem, -1rem + 26vw, 30rem);
+
+  /* Spacing (4px base) */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4rem;
+  --s-9: 6rem;
+  --s-10: 8rem;
+  --s-11: 12rem;
+
+  --gutter: clamp(1rem, 0.4rem + 3vw, 3.5rem);
+  --header-h: clamp(3.5rem, 3rem + 1.5vw, 4.75rem);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-silk: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-press: 140ms;
+  --dur-ui: 220ms;
+  --dur-scene: 900ms;
+
+  --hairline: 1px;
+}
+
+/* Light scenes (Story) flip the roles, not the ramp. */
+[data-theme='light'] {
+  --ground: var(--z10);
+  --ink: var(--z0);
+  --ink-2: var(--z4);
+  --ink-3: var(--z5);
+  --rule: color-mix(in oklab, var(--z0) 14%, transparent);
+  --rule-strong: color-mix(in oklab, var(--z0) 32%, transparent);
+}

@@ -1,0 +1,40 @@
+/*
+ * Scene scaffolding. A scene is a tall scroll track with a sticky 100svh frame;
+ * its pose anchor is the section itself, so the pose peaks mid-track.
+ */
+.scene {
+  position: relative;
+  display: grid;
+  min-height: var(--len, 200svh);
+}
+
+.scene > * {
+  grid-area: 1 / 1;
+}
+
+.scene__frame {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100svh;
+  display: grid;
+  padding: calc(var(--header-h) + var(--s-5)) var(--gutter) var(--s-8);
+  overflow: clip;
+}
+
+/* Beneath the WebGL stage: the watch passes in front of these words. */
+.plane-back {
+  position: relative;
+  z-index: -1;
+}
+
+.plane-front {
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 767px) {
+  .scene__frame {
+    padding-bottom: calc(var(--s-9) + var(--s-2));
+  }
+}

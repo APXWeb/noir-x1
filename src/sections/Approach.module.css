@@ -1,0 +1,41 @@
+.scene {
+  --len: 230svh;
+}
+
+.title {
+  display: grid;
+  align-content: space-between;
+  height: 100%;
+  font-size: clamp(3rem, 11.2vw, 13rem);
+  line-height: 0.82;
+  white-space: nowrap;
+}
+
+.top,
+.bottom {
+  display: block;
+}
+
+.bottom {
+  justify-self: end;
+  color: var(--z5);
+}
+
+.copy {
+  align-self: end;
+  justify-self: start;
+  margin-bottom: 18svh;
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 767px) {
+  .title {
+    font-size: clamp(2.4rem, 12.5vw, 4rem);
+    align-content: start;
+    gap: 44svh;
+  }
+  .copy {
+    margin-bottom: 0;
+  }
+}

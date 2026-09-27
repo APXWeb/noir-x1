@@ -1,0 +1,98 @@
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  padding: calc(var(--header-h) + var(--s-6)) var(--gutter) var(--s-7);
+}
+
+/* Behind the stage: the watch crosses in front of the words. */
+.title {
+  position: relative;
+  z-index: -1;
+  align-self: center;
+  font-size: clamp(3.25rem, 0.2rem + 8.4vw, 10.5rem);
+  color: var(--z10);
+}
+
+/* The last line steps in, a composition gesture rather than a centred block. */
+.title > :global(.line):nth-child(2) {
+  padding-left: 0.9em;
+  color: var(--z6);
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--s-5);
+  max-width: 26rem;
+}
+
+.cue {
+  position: absolute;
+  left: 50%;
+  bottom: var(--s-6);
+  display: grid;
+  justify-items: center;
+  gap: var(--s-3);
+  translate: -50% 0;
+}
+
+.cueLine {
+  position: relative;
+  width: var(--hairline);
+  height: 44px;
+  overflow: hidden;
+  background: var(--rule);
+}
+
+.cueLine::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--z10);
+  transform: translateY(-100%);
+  animation: cue 2.4s var(--ease-in-out) infinite;
+}
+
+@keyframes cue {
+  0% {
+    transform: translateY(-100%);
+  }
+  55%,
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@media (max-width: 767px) {
+  .hero {
+    grid-template-rows: 1fr auto auto;
+    align-content: end;
+    gap: var(--s-5);
+    padding-bottom: calc(var(--s-9) + var(--s-2));
+  }
+  .title {
+    grid-row: 2;
+    align-self: end;
+    font-size: clamp(2.6rem, 14vw, 4.5rem);
+  }
+  .title > :global(.line):nth-child(2) {
+    padding-left: 0.6em;
+  }
+  .meta {
+    grid-row: 3;
+  }
+  .cue {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cueLine::after {
+    animation: none;
+    transform: none;
+    opacity: 0.4;
+  }
+}

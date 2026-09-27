@@ -1,0 +1,124 @@
+.scene {
+  --len: auto;
+}
+
+.track {
+  display: grid;
+}
+
+.intro {
+  height: 70svh;
+}
+
+.step {
+  height: 110svh;
+}
+
+.panel {
+  align-self: center;
+  display: grid;
+  gap: var(--s-7);
+  width: min(40%, 34rem);
+}
+
+.title {
+  font-size: clamp(2.5rem, 1rem + 4vw, 5.5rem);
+}
+
+.record {
+  border-top: var(--hairline) solid var(--rule-strong);
+}
+
+.row {
+  border-bottom: var(--hairline) solid var(--rule);
+}
+
+.rowHead {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-3);
+  padding-block: var(--s-4);
+}
+
+.row .rowHead :global(.measure) {
+  transition: color 300ms ease;
+}
+
+.leader {
+  flex: 1;
+  height: var(--hairline);
+  align-self: center;
+  background-image: linear-gradient(to right, var(--rule-strong) 1px, transparent 1px);
+  background-size: 4px 1px;
+}
+
+.reading {
+  color: var(--ink-2) !important;
+}
+
+.row[data-active='true'] .rowHead :global(.measure) {
+  color: var(--ink);
+}
+.row[data-active='true'] .reading {
+  color: var(--ink) !important;
+}
+
+/* Collapsible detail: grid rows 0fr → 1fr keeps the text in the DOM for AT. */
+.detail {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 700ms var(--ease-out),
+    opacity 400ms ease;
+}
+
+.detail > div {
+  overflow: hidden;
+  display: grid;
+  gap: var(--s-3);
+}
+
+.row[data-active='true'] .detail {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.row[data-active='true'] .detail > div {
+  padding-bottom: var(--s-5);
+}
+
+.specTitle {
+  color: var(--ink);
+}
+
+.note {
+  color: var(--ink-3);
+}
+
+@media (max-width: 767px) {
+  .panel {
+    align-self: end;
+    width: 100%;
+    gap: var(--s-4);
+  }
+  .title {
+    font-size: clamp(1.8rem, 8.5vw, 2.6rem);
+  }
+  .rowHead {
+    padding-block: var(--s-2);
+  }
+  .row :global(.body) {
+    font-size: var(--t-small);
+  }
+  /* On phones only the reading under test is shown; the rest collapse to rows. */
+  .note {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .detail {
+    transition: none;
+  }
+}

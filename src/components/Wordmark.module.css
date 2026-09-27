@@ -1,0 +1,19 @@
+.mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.07em;
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 125;
+  font-weight: 640;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.ring {
+  width: 0.74em;
+  height: 0.74em;
+  margin-inline: 0.03em 0.06em;
+  /* Optical: the ring sits on the cap height, not the em box. */
+  transform: translateY(-0.005em);
+}

@@ -1,0 +1,28 @@
+.stage {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  contain: strict;
+}
+
+.stage canvas {
+  display: block;
+}
+
+.stage {
+  background-color: transparent;
+  transition: background-color 600ms ease;
+}
+
+.stage[data-mode='explore'] {
+  z-index: 40;
+  background-color: var(--z0);
+  pointer-events: auto;
+  cursor: grab;
+  touch-action: none;
+}
+
+.stage[data-mode='explore']:active {
+  cursor: grabbing;
+}
