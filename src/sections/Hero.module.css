@@ -11,7 +11,8 @@
   position: relative;
   z-index: -1;
   align-self: center;
-  font-size: clamp(3.25rem, 0.2rem + 8.4vw, 10.5rem);
+  /* COMPROMISE. = 8.94em must clear the watch at 1024–1920px. */
+  font-size: clamp(3.25rem, 6.2vw, 8rem);
   color: var(--z10);
 }
 
@@ -76,6 +77,8 @@
   .title {
     grid-row: 2;
     align-self: end;
+    /* On phones the words cross in front of the strap instead of behind it. */
+    z-index: 2;
     /* COMPROMISE. measures 8.94em in the display face. */
     font-size: clamp(2.2rem, 10vw, 4.5rem);
   }

@@ -17,8 +17,8 @@ export function Finale() {
 
   return (
     <section ref={ref} id="finale" className={`scene ${styles.scene}`} data-pose="finale" data-theme="dark" aria-labelledby="finale-title">
-      <div className="scene__frame">
-        <h2 id="finale-title" className={`display plane-back ${styles.title}`}>
+      <div className="scene__frame scene__frame--back">
+        <h2 id="finale-title" className={`display ${styles.title}`}>
           <span data-word className={styles.l1}>
             Time,
           </span>{' '}
@@ -26,6 +26,8 @@ export function Finale() {
             refined.
           </span>
         </h2>
+      </div>
+      <div className="scene__frame">
         <div className={styles.actions}>
           <div data-act>
             <Cta onClick={() => setMode('explore')}>Explore NOIR X1</Cta>

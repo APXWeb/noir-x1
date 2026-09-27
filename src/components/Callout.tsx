@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { projected } from '../three/anchors'
+import { projected } from '../three/points'
 import styles from './Callout.module.css'
 
 type Common = { active: boolean; label: string; value?: string; className?: string }
@@ -46,17 +46,28 @@ export function Callout(props: PointProps | SpanProps) {
         if (!p) return
         el.style.transform = `translate3d(${p.x}px, ${p.y}px, 0)`
         el.style.setProperty('--facing', p.facing.toFixed(2))
-        // Flip the leader when the label would leave the viewport.
-        const room = 170
+        // Keep the measured label on screen: prefer the authored side, flip if it
+        // doesn't fit, then clamp both axes; the leader always ends at the label.
+        const lw = labelEl.current!.offsetWidth
+        const lh = labelEl.current!.offsetHeight
+        const vw = window.innerWidth
+        const vh = window.innerHeight
+        const margin = 12
         let dx = props.dx
-        if (p.x + dx < room) dx = Math.abs(dx)
-        else if (p.x + dx > window.innerWidth - room) dx = -Math.abs(dx)
-        const dy = p.y + props.dy < 80 ? Math.abs(props.dy) : props.dy
-        if (dx !== lastDx.current || dy !== lastDy.current) {
-          lastDx.current = dx
-          lastDy.current = dy
-          path.current?.setAttribute('d', `M0 0 L${dx * 0.55} ${dy} L${dx} ${dy}`)
-          labelEl.current!.style.transform = `translate(${dx}px, ${dy}px) translate(${dx < 0 ? 'calc(-100% - 10px)' : '10px'}, -50%)`
+        if (dx > 0 && p.x + dx + 10 + lw > vw - margin) dx = -Math.abs(dx)
+        else if (dx < 0 && p.x + dx - 10 - lw < margin) dx = Math.abs(dx)
+        let left = dx < 0 ? p.x + dx - 10 - lw : p.x + dx + 10
+        left = Math.min(Math.max(left, margin), vw - margin - lw)
+        const top = Math.min(Math.max(p.y + props.dy - lh / 2, 84), vh - 72 - lh)
+        const ex = (dx < 0 ? left + lw + 10 : left - 10) - p.x
+        const ey = top + lh / 2 - p.y
+        const kx = Math.round(ex)
+        const ky = Math.round(ey)
+        if (kx !== lastDx.current || ky !== lastDy.current) {
+          lastDx.current = kx
+          lastDy.current = ky
+          path.current?.setAttribute('d', `M0 0 L${kx * 0.55} ${ky} L${kx} ${ky}`)
+          labelEl.current!.style.transform = `translate(${Math.round(left - p.x)}px, ${Math.round(top - p.y)}px)`
         }
       }
     }

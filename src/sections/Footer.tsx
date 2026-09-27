@@ -28,8 +28,8 @@ export function Footer() {
             ))}
           </ul>
         </nav>
-        <p className="measure">NOIR is a fictional brand. All specifications are conceptual.</p>
-        <p className="measure">Concept, 3D and experience by APX · 2026</p>
+        <p className="label">NOIR is a fictional brand. All specifications are conceptual.</p>
+        <p className="label">Concept, 3D and experience by APX · 2026</p>
       </div>
     </footer>
   )

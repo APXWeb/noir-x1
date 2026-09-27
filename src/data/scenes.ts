@@ -10,7 +10,7 @@ export interface Scene {
 
 export const SCENES: Scene[] = [
   { id: 'top', title: 'Precision', poses: ['hero'] },
-  { id: 'x1', title: 'Time, redefined', poses: ['approach'] },
+  { id: 'x1', title: 'Nothing extra', poses: ['approach'] },
   { id: 'angles', title: 'Every side', poses: ['rotate'] },
   { id: 'sweep', title: 'Eight beats', poses: ['detail'] },
   { id: 'profile', title: 'Profile', poses: ['profile'] },

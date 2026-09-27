@@ -428,18 +428,19 @@ export function createStrapNormal(w = 1024, h = 256) {
 /* ---------------------------------------------------------------- carbon */
 
 /** Forged carbon: layered chopped-fibre flakes. Runtime-only variant map. */
-export function createForgedCarbon(size = 1024) {
+export function createForgedCarbon(repeat: [number, number] = [3, 0.5], size = 1024) {
   const { c, ctx } = canvas(size)
   ctx.fillStyle = '#0d0e0f'
   ctx.fillRect(0, 0, size, size)
   let seed = 7
   const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647)
-  for (let i = 0; i < 1800; i++) {
+  for (let i = 0; i < 900; i++) {
     const x = rnd() * size
     const y = rnd() * size
-    const w = 20 + rnd() * 90
-    const hgt = 6 + rnd() * 22
-    const shade = 14 + Math.floor(rnd() * 38)
+    const w = 50 + rnd() * 170
+    const hgt = 14 + rnd() * 46
+    // Wide value range so the chopped fibres survive tone mapping at stage scale.
+    const shade = 10 + Math.floor(rnd() * rnd() * 110)
     ctx.save()
     ctx.translate(x, y)
     ctx.rotate(rnd() * Math.PI)
@@ -451,5 +452,5 @@ export function createForgedCarbon(size = 1024) {
     ctx.fill()
     ctx.restore()
   }
-  return toTexture(c, { name: 'forged-carbon', repeat: [2, 2] })
+  return toTexture(c, { name: 'forged-carbon', repeat })
 }

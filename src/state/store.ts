@@ -16,6 +16,11 @@ interface State {
   hotspot: string | null
   /** Index of the pose anchor nearest the viewport centre. */
   scene: number
+  /** Asset loading, mirrored from inside the lazily loaded 3D stage. */
+  loadProgress: number
+  loadActive: boolean
+  /** WebGL or the model failed at runtime: fall back to rendered stills. */
+  stageFailed: boolean
   /** Monotonic counter bumped on every material change; drives the light sweep. */
   sweep: number
   setReady: (v: boolean) => void
@@ -38,6 +43,9 @@ export const useStore = create<State>((set, get) => ({
   hotspot: null,
   scene: 0,
   sweep: 0,
+  loadProgress: 0,
+  loadActive: false,
+  stageFailed: false,
   setReady: (ready) => set({ ready }),
   setIntroDone: (introDone) => set({ introDone }),
   setMaterial: (material) => get().material !== material && set({ material, sweep: get().sweep + 1 }),

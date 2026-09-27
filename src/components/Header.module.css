@@ -196,7 +196,8 @@
     font-family: var(--font-display);
     font-variation-settings: 'wdth' 125;
     font-weight: 560;
-    font-size: clamp(2.25rem, 11vw, 3.5rem);
+    /* COLLECTION ≈ 7.6em must fit the phone width. */
+    font-size: min(10.5vw, 3.5rem);
     line-height: 1;
     letter-spacing: -0.03em;
     text-transform: uppercase;

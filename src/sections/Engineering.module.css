@@ -56,7 +56,36 @@
   color: var(--ink-2) !important;
 }
 
-.row[data-active='true'] .rowHead :global(.measure) {
+/* Under test, the heading names the part; the record line keeps only its reading. */
+.term {
+  transition: opacity 300ms ease;
+}
+.row[data-active='true'] .term {
+  opacity: 0;
+}
+
+.bulletin {
+  width: 100%;
+  margin-top: var(--s-3);
+  border-collapse: collapse;
+  text-align: center;
+}
+.bulletin caption {
+  text-align: left;
+  padding-bottom: var(--s-2);
+}
+.bulletin th,
+.bulletin td {
+  padding: var(--s-2) 0;
+  border-top: var(--hairline) solid var(--rule);
+  font-weight: 450;
+}
+.bulletin td {
+  color: var(--ink) !important;
+}
+
+.row[data-active='true'] .rowHead :global(.measure),
+.row[data-active='true'] .rowHead :global(.label) {
   color: var(--ink);
 }
 .row[data-active='true'] .reading {

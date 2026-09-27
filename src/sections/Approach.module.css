@@ -18,10 +18,16 @@
 
 .bottom {
   justify-self: end;
-  color: var(--z5);
+  /* Ghosted, but still ≥3:1 as large text (3.6:1). */
+  color: var(--z6);
+}
+
+.title {
+  grid-area: 1 / 1;
 }
 
 .copy {
+  grid-area: 1 / 1;
   align-self: end;
   justify-self: start;
   margin-bottom: 18svh;
@@ -33,8 +39,8 @@
   .title {
     /* REDEFINED. = 7.4em */
     font-size: min(11.8vw, 4rem);
-    align-content: start;
-    gap: 44svh;
+    align-content: space-between;
+    padding-bottom: 30svh;
   }
   .copy {
     margin-bottom: 0;

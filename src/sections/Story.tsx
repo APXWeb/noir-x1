@@ -47,7 +47,7 @@ export function Story() {
 
         <figure className={`${styles.figure} ${styles.figB}`} data-frame>
           <img src={still('caseback')} alt={STORY.images.caseback} loading="lazy" decoding="async" width="1600" height="1000" />
-          <figcaption className="measure">{STORY.caption}</figcaption>
+          <figcaption className="label">{STORY.caption}</figcaption>
         </figure>
 
         <blockquote className={styles.quote} data-drift>

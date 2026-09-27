@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useStore } from '../state/store'
 import { HOTSPOTS } from '../data/hotspots'
-import { projected } from '../three/anchors'
+import { projected } from '../three/points'
 import { exploreBus, type ExploreCommand } from '../animation/exploreBus'
 import { lockScroll } from '../animation/smoothScroll'
 import styles from './ExploreOverlay.module.css'
@@ -113,7 +113,7 @@ export function ExploreOverlay() {
           Explore the X1
         </h2>
         <button type="button" className={styles.close} onClick={() => setMode('scroll')} data-autofocus>
-          <span className="measure">Close</span>
+          <span className="label">Close</span>
           <svg viewBox="0 0 12 12" aria-hidden="true">
             <path d="M1 1l10 10M11 1 1 11" stroke="currentColor" strokeWidth="1" />
           </svg>
@@ -143,7 +143,6 @@ export function ExploreOverlay() {
       <div className={styles.panel} data-open={!!active} aria-live="polite">
         {active && (
           <div key={active.id} className={styles.panelInner}>
-            <p className="measure">{String(HOTSPOTS.indexOf(active) + 1).padStart(2, '0')} / {String(HOTSPOTS.length).padStart(2, '0')}</p>
             <h3 className={`h3 ${styles.panelTitle}`}>{active.name}</h3>
             <p className="body">{active.line}</p>
           </div>
@@ -168,11 +167,11 @@ export function ExploreOverlay() {
           </button>
         ))}
         <button type="button" className={`${styles.ctrl} ${styles.reset}`} onClick={() => exploreBus.emit('reset')}>
-          <span className="measure">Reset</span>
+          <span className="label">Reset</span>
         </button>
       </div>
 
-      <p className={`measure ${styles.hint}`} data-show={hint} aria-hidden="true">
+      <p className={`label ${styles.hint}`} data-show={hint} aria-hidden="true">
         Drag to rotate · Pinch or scroll to zoom · Select a point
       </p>
     </div>

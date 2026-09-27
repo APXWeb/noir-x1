@@ -7,6 +7,8 @@ export interface Spec {
   body: string
   reading: string
   anchor: string
+  /** Optional certification bulletin: [position, daily rate]. */
+  bulletin?: [string, string][]
   /** Leader direction for the graticule (px) on desktop. */
   dx: number
   dy: number
@@ -21,7 +23,7 @@ export const SPECS: Spec[] = [
     body: 'Cut from a single billet, bead-blasted, then hand-polished along every chamfer. Forty percent lighter than steel and harder to mark.',
     reading: 'Ti-6Al-4V · 41.0 mm',
     anchor: 'lug',
-    dx: -160,
+    dx: 160,
     dy: -70,
   },
   {
@@ -32,7 +34,7 @@ export const SPECS: Spec[] = [
     body: 'Domed, nine on the Mohs scale, anti-reflective on the inside only, so the dial reads black and the dome still catches the light.',
     reading: 'Al₂O₃ · 9 Mohs',
     anchor: 'crystal',
-    dx: -170,
+    dx: 170,
     dy: -90,
   },
   {
@@ -43,7 +45,15 @@ export const SPECS: Spec[] = [
     body: 'Calibre N-01: seventy-two hours of reserve, a free-sprung balance, and a rotor you can watch through the caseback.',
     reading: '28 800 vph · 72 h',
     anchor: 'caseback',
-    dx: -190,
+    bulletin: [
+      ['DU', '+1.2'],
+      ['DD', '+0.8'],
+      ['CU', '−0.4'],
+      ['CD', '+0.6'],
+      ['CL', '+1.0'],
+      ['CR', '−0.2'],
+    ],
+    dx: 190,
     dy: 80,
   },
   {
@@ -54,7 +64,7 @@ export const SPECS: Spec[] = [
     body: 'A screw-down crown seated on twin gaskets. Pressure-tested to ten bar, then tested again before it leaves.',
     reading: '10 bar · ISO 22810',
     anchor: 'crown',
-    dx: -150,
+    dx: 150,
     dy: -110,
   },
 ]

@@ -28,14 +28,14 @@ type PoseTable = Record<string, Pose>
 const desktop: PoseTable = {
   hero: {
     label: 'Dial up',
-    watch: { pos: [3.15, -0.2, 0], rot: [-12, -28, 7] },
+    watch: { pos: [3.4, -0.2, 0], rot: [-12, -28, 7] },
     cam: { pos: [0, 0, 13], target: [0, 0, 0] },
     key: 20,
   },
   approach: {
     label: 'Dial up · close',
-    watch: { pos: [0, -0.1, 0], rot: [-4, 6, 0] },
-    cam: { pos: [0, 0, 7.4], target: [0, 0, 0] },
+    watch: { pos: [0.9, -0.05, 0], rot: [-4, 6, 0] },
+    cam: { pos: [0, 0, 10.2], target: [0, 0, 0] },
     key: 40,
   },
   rotate: {
@@ -59,26 +59,26 @@ const desktop: PoseTable = {
   },
   'eng-case': {
     label: 'Case · lugs',
-    watch: { pos: [2.1, 0.1, 0], rot: [-24, -48, 10] },
+    watch: { pos: [2.45, 0.1, 0], rot: [-24, -48, 10] },
     cam: { pos: [0, 0, 9.6], target: [0, 0, 0] },
     key: -20,
   },
   'eng-sapphire': {
     label: 'Crystal · grazing',
-    watch: { pos: [1.55, -0.5, 0], rot: [-66, -14, 0] },
+    watch: { pos: [1.95, -0.5, 0], rot: [-66, -14, 0] },
     cam: { pos: [0, 0.8, 9.2], target: [0, 0, 0] },
     key: 80,
   },
   'eng-movement': {
     label: 'Dial down',
-    watch: { pos: [2.0, 0, 0], rot: [4, 198, -6] },
+    watch: { pos: [2.35, 0, 0], rot: [4, 198, -6] },
     cam: { pos: [0, 0, 8.8], target: [0, 0, 0] },
     key: 150,
     strap: 0,
   },
   'eng-water': {
     label: 'Crown up · seal',
-    watch: { pos: [1.3, 0, 0], rot: [-8, -96, 0] },
+    watch: { pos: [1.7, 0, 0], rot: [-8, -96, 0] },
     cam: { pos: [0, 0, 7.6], target: [0, 0, 0] },
     key: -40,
   },
@@ -158,9 +158,11 @@ const desktop: PoseTable = {
   },
   finale: {
     label: 'Dial up · final',
-    watch: { pos: [0, -0.35, 0], rot: [-20, -16 + 720, 0] },
-    cam: { pos: [0, -1.4, 10.5], target: [0, -0.1, 0] },
+    watch: { pos: [0, 0.2, 0], rot: [-20, -16 + 720, 0] },
+    cam: { pos: [0, -1.1, 18], target: [0, 0.05, 0] },
     key: 90,
+    // The close: the head alone, floating between the two words.
+    strap: 0,
     spin: 0.6,
   },
 }
@@ -168,9 +170,10 @@ const desktop: PoseTable = {
 /** Mobile overrides: the watch leads from the upper half, text lives below. */
 const mobileOverrides: Partial<Record<string, Partial<Pose>>> = {
   hero: { watch: { pos: [0, 1.65, 0], rot: [-12, -24, 6] }, cam: { pos: [0, 0, 18.5], target: [0, 0, 0] } },
-  approach: { watch: { pos: [0, 1.1, 0], rot: [-4, 6, 0] }, cam: { pos: [0, 0, 13], target: [0, 0, 0] } },
+  approach: { watch: { pos: [0, 0.9, 0], rot: [-4, 6, 0] }, cam: { pos: [0, 0, 15], target: [0, 0, 0] } },
   rotate: { watch: { pos: [0, 1.7, 0], rot: [-6, -72, 0] }, cam: { pos: [0, 0, 16], target: [0, 0, 0] } },
-  detail: { watch: { pos: [0, 1.2, 0], rot: [-10, 12, 0] }, cam: { pos: [0.9, 2.2, 6.8], target: [0.6, 1.6, 0.2] } },
+  // Dial crops the upper half; the copy sits on bare graphite below it.
+  detail: { watch: { pos: [0, 1.3, 0], rot: [-10, 12, 0] }, cam: { pos: [0.5, 0.2, 11], target: [0.3, 0, 0] } },
   profile: { watch: { pos: [0, 1.9, 0], rot: [-84, 0, -6] }, cam: { pos: [0, 0.3, 13], target: [0, 0, 0] } },
   'eng-case': { watch: { pos: [0, 2.1, 0], rot: [-24, -48, 10] }, cam: { pos: [0, 0, 16], target: [0, 0, 0] } },
   'eng-sapphire': { watch: { pos: [0, 1.9, 0], rot: [-66, -14, 0] }, cam: { pos: [0, 0.8, 15], target: [0, 0, 0] } },
@@ -183,7 +186,7 @@ const mobileOverrides: Partial<Record<string, Partial<Pose>>> = {
   x1: { watch: { pos: [0, 2.0, 0], rot: [-10, 24, -4] }, cam: { pos: [0, 0, 18], target: [0, 0, 0] } },
   x2: { watch: { pos: [0, 2.0, 0], rot: [-10, 24 + 360, -4] }, cam: { pos: [0, 0, 18], target: [0, 0, 0] } },
   x3: { watch: { pos: [0, 2.0, 0], rot: [-10, 24 + 720, -4] }, cam: { pos: [0, 0, 18], target: [0, 0, 0] } },
-  finale: { watch: { pos: [0, 1.3, 0], rot: [-20, -16 + 720, 0] }, cam: { pos: [0, -1.4, 16], target: [0, -0.1, 0] } },
+  finale: { watch: { pos: [0, 0.9, 0], rot: [-20, -16 + 720, 0] }, cam: { pos: [0, -1.1, 18], target: [0, 0.05, 0] } },
 }
 
 const mobile: PoseTable = Object.fromEntries(

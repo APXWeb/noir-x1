@@ -59,7 +59,7 @@ export function Hero() {
         </div>
       </div>
       <div className={styles.cue} data-hero-cue aria-hidden="true">
-        <span className="measure">Scroll</span>
+        <span className="label">Scroll</span>
         <span className={styles.cueLine} />
       </div>
     </section>

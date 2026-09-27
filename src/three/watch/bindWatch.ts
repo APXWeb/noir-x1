@@ -68,12 +68,29 @@ export function bindWatch(scene: THREE.Object3D): BoundWatch {
     }
   })
 
+  // Lugs share the case finish but have world-scale UVs: give them their own
+  // material so a patterned finish (forged carbon) can be scaled to them.
+  const lugs = nodes[NODE.lugs] as THREE.Mesh | undefined
+  // Idempotent: React may bind the same cached scene more than once.
+  if (lugs && mats[MAT.metal]) {
+    let lm = lugs.material as THREE.MeshPhysicalMaterial
+    if (lm.name !== 'M_Lugs') {
+      lm = (mats[MAT.metal] as THREE.MeshPhysicalMaterial).clone()
+      lm.name = 'M_Lugs'
+      lugs.material = lm
+    }
+    mats['M_Lugs'] = lm
+  }
+
   // The buckle gets its own copy of the polished metal so it can fade with the strap.
   const buckle = nodes[NODE.buckle] as THREE.Mesh | undefined
   if (buckle && mats[MAT.metalPolished]) {
-    const bm = (mats[MAT.metalPolished] as THREE.MeshPhysicalMaterial).clone()
-    bm.name = 'M_Buckle'
-    buckle.material = bm
+    let bm = buckle.material as THREE.MeshPhysicalMaterial
+    if (bm.name !== 'M_Buckle') {
+      bm = (mats[MAT.metalPolished] as THREE.MeshPhysicalMaterial).clone()
+      bm.name = 'M_Buckle'
+      buckle.material = bm
+    }
     mats['M_Buckle'] = bm
   }
 
@@ -124,11 +141,20 @@ export function setFinish(w: BoundWatch, id: MaterialId) {
   w.target.polishedRough = f.polished.roughness
   w.target.strap.set(f.strap)
 
-  const metal = w.mats[MAT.metal] as THREE.MeshPhysicalMaterial | undefined
-  if (metal && w.target.carbon !== !!f.metal.carbon) {
+  if (w.target.carbon !== !!f.metal.carbon) {
     w.target.carbon = !!f.metal.carbon
-    metal.map = w.target.carbon ? cached('carbon', createForgedCarbon) : null
-    metal.needsUpdate = true
+    const pairs: [string, () => THREE.Texture][] = [
+      [MAT.metal, () => cached('carbon', () => createForgedCarbon([3, 0.5]))],
+      ['M_Lugs', () => cached('carbon-lugs', () => createForgedCarbon([0.9, 0.9]))],
+    ]
+    for (const [name, tex] of pairs) {
+      const m = w.mats[name] as THREE.MeshPhysicalMaterial | undefined
+      if (!m) continue
+      const carbon = w.target.carbon ? tex() : null
+      // Fibre pattern in the albedo; the resin's gloss comes from the clearcoat above it.
+      m.map = carbon
+      m.needsUpdate = true
+    }
   }
 }
 
@@ -151,9 +177,28 @@ export function setDialAndBezel(w: BoundWatch, dial: DialStyle, bezel: BezelStyl
   }
 }
 
+/**
+ * Transmissive materials render without blending, so whatever alpha they
+ * compute lands in the canvas. On a transparent canvas that lets the DOM's
+ * back-plane type show through the watch; clamp it to fully opaque. (The
+ * cheaper tiers use an ordinary blended crystal and are unaffected.)
+ */
+function forceOpaqueAlpha(m: THREE.Material) {
+  if (m.userData.opaqueAlpha) return
+  m.userData.opaqueAlpha = true
+  m.onBeforeCompile = (shader) => {
+    shader.fragmentShader = shader.fragmentShader.replace(
+      '#include <dithering_fragment>',
+      ['#include <dithering_fragment>', '#ifdef USE_TRANSMISSION', '  gl_FragColor.a = 1.0;', '#endif'].join('\n'),
+    )
+  }
+  m.customProgramCacheKey = () => 'opaque-alpha'
+}
+
 export function applyQuality(w: BoundWatch, q: Quality) {
   const s = w.mats[MAT.sapphire] as THREE.MeshPhysicalMaterial | undefined
   if (!s) return
+  forceOpaqueAlpha(s)
   const cheap = q !== 'high'
   s.transmission = cheap ? 0 : 1
   s.transparent = cheap
@@ -168,11 +213,12 @@ export function stepLook(w: BoundWatch, dt: number) {
   const metal = w.mats[MAT.metal] as THREE.MeshPhysicalMaterial | undefined
   const pol = w.mats[MAT.metalPolished] as THREE.MeshPhysicalMaterial | undefined
   const strap = w.mats[MAT.strap]
-  if (metal) {
-    metal.color.lerp(w.target.metal, k)
-    metal.roughness += (w.target.metalRough - metal.roughness) * k
-    metal.metalness += (w.target.metalMetalness - metal.metalness) * k
-    metal.clearcoat += (w.target.metalClearcoat - metal.clearcoat) * k
+  for (const m of [metal, w.mats['M_Lugs'] as THREE.MeshPhysicalMaterial | undefined]) {
+    if (!m) continue
+    m.color.lerp(w.target.metal, k)
+    m.roughness += (w.target.metalRough - m.roughness) * k
+    m.metalness += (w.target.metalMetalness - m.metalness) * k
+    m.clearcoat += (w.target.metalClearcoat - m.clearcoat) * k
   }
   for (const m of [pol, w.mats['M_Buckle']]) {
     if (!m) continue

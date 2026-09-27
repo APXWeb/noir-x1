@@ -27,7 +27,7 @@ export function ExploreIntro() {
           <div data-copy>
             <Cta onClick={() => setMode('explore')}>Enter explore mode</Cta>
           </div>
-          <p className="measure" data-copy>
+          <p className="label" data-copy>
             Drag · Pinch or scroll · Arrow keys
           </p>
         </div>

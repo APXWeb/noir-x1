@@ -19,12 +19,16 @@
   transform: scale(0.97);
 }
 
+/* The rule extends toward the action on hover: a scaled line and a
+   translated arrowhead, never a width change. */
 .rule {
+  --reach: 32px;
   position: relative;
   display: block;
-  width: 56px;
+  width: 88px;
   height: 12px;
-  transition: width 520ms var(--ease-out);
+  /* The unextended rule occupies 56px; the rest is reach. */
+  margin-right: calc(var(--reach) * -1);
 }
 
 .rule::before {
@@ -35,6 +39,9 @@
   top: 50%;
   height: var(--hairline);
   background: currentColor;
+  transform: scaleX(0.636);
+  transform-origin: left;
+  transition: transform 520ms var(--ease-out);
 }
 
 .head {
@@ -43,6 +50,8 @@
   top: 0;
   width: 12px;
   height: 12px;
+  transform: translateX(calc(var(--reach) * -1));
+  transition: transform 520ms var(--ease-out);
 }
 
 .head path:first-child {
@@ -50,12 +59,18 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .cta:hover .rule {
-    width: 88px;
+  .cta:hover .rule::before {
+    transform: scaleX(1);
+  }
+  .cta:hover .head {
+    transform: none;
   }
 }
-.cta:focus-visible .rule {
-  width: 88px;
+.cta:focus-visible .rule::before {
+  transform: scaleX(1);
+}
+.cta:focus-visible .head {
+  transform: none;
 }
 
 .quiet {
@@ -63,14 +78,21 @@
 }
 
 .quiet .rule {
-  width: 28px;
+  --reach: 60px;
+}
+
+.quiet .rule::before {
+  transform: scaleX(0.318);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .quiet:hover {
     color: var(--ink);
   }
-  .quiet:hover .rule {
-    width: 44px;
+  .quiet:hover .rule::before {
+    transform: scaleX(0.5);
+  }
+  .quiet:hover .head {
+    transform: translateX(-44px);
   }
 }

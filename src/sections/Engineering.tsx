@@ -45,7 +45,7 @@ export function Engineering() {
             {SPECS.map((s) => (
               <li key={s.id} className={styles.row} data-row data-active={active === s.id}>
                 <div className={styles.rowHead}>
-                  <span className="measure">{s.term}</span>
+                  <span className={`label ${styles.term}`}>{s.term}</span>
                   <span className={styles.leader} aria-hidden="true" />
                   <span className={`measure ${styles.reading}`}>{s.reading}</span>
                 </div>
@@ -53,12 +53,33 @@ export function Engineering() {
                   <div>
                     <h3 className={`h3 ${styles.specTitle}`}>{s.title}</h3>
                     <p className="body">{s.body}</p>
+                    {s.bulletin && (
+                      <table className={styles.bulletin}>
+                        <caption className="label">Rate by position, s/day</caption>
+                        <tbody>
+                          <tr>
+                            {s.bulletin.map(([pos]) => (
+                              <th key={pos} scope="col" className="measure">
+                                {pos}
+                              </th>
+                            ))}
+                          </tr>
+                          <tr>
+                            {s.bulletin.map(([pos, rate]) => (
+                              <td key={pos} className="measure">
+                                {rate}
+                              </td>
+                            ))}
+                          </tr>
+                        </tbody>
+                      </table>
+                    )}
                   </div>
                 </div>
               </li>
             ))}
           </ol>
-          <p className={`measure ${styles.note}`}>Concept specifications</p>
+          <p className={`label ${styles.note}`}>Concept specifications</p>
         </div>
       </div>
       <div className={styles.track} aria-hidden="true">
@@ -72,7 +93,7 @@ export function Engineering() {
           key={s.id}
           anchor={s.anchor}
           dx={mobile ? Math.sign(s.dx) * 60 : s.dx}
-          dy={mobile ? Math.sign(s.dy) * 50 : s.dy}
+          dy={mobile ? -Math.abs(s.dy) * 0.6 : s.dy}
           label={s.term}
           value={s.reading}
           active={inView && active === s.id}

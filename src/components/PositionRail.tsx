@@ -16,11 +16,21 @@ export function PositionRail() {
 
   useEffect(() => onTrackChange(() => setPose(track.nearestName)), [])
 
+  // Step aside once the footer arrives; the ritual is over.
+  const [atEnd, setAtEnd] = useState(false)
+  useEffect(() => {
+    const footer = document.querySelector('footer')
+    if (!footer) return
+    const io = new IntersectionObserver(([e]) => setAtEnd(e.isIntersecting), { threshold: 0 })
+    io.observe(footer)
+    return () => io.disconnect()
+  }, [])
+
   const active = sceneIndexOfPose(pose)
   const label = poseOf(pose).label
 
   return (
-    <aside className={styles.rail} data-hidden={mode === 'explore' || !introDone} aria-label="Scenes">
+    <aside className={styles.rail} data-hidden={mode === 'explore' || !introDone || atEnd || (poseOf(pose).stage ?? 1) === 0} aria-label="Scenes">
       <p className={styles.readout} aria-live="off">
         <span className="measure">
           Pos. <span className={styles.num}>{String(active + 1).padStart(2, '0')}</span>

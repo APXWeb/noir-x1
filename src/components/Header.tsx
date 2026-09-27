@@ -109,7 +109,6 @@ export function Header() {
           {NAV.map((n, i) => (
             <li key={n.href} style={{ '--i': i } as React.CSSProperties}>
               <a href={n.href} onClick={go(n.href)}>
-                <span className="measure">{String(i + 1).padStart(2, '0')}</span>
                 {n.label}
               </a>
             </li>

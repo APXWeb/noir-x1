@@ -3,7 +3,7 @@ import { VARIANTS, type Variant } from '../data/collection'
 import { useScene } from '../animation/useScene'
 import styles from './Collection.module.css'
 
-function Panel({ v, index }: { v: Variant; index: number }) {
+function Panel({ v }: { v: Variant }) {
   const ref = useRef<HTMLElement>(null)
 
   useScene(ref, (tl, q) => {
@@ -15,14 +15,13 @@ function Panel({ v, index }: { v: Variant; index: number }) {
 
   return (
     <article ref={ref} className={`scene ${styles.panel}`} data-pose={v.id} aria-labelledby={`model-${v.id}`}>
-      <div className="scene__frame">
-        <p className={`plane-back ${styles.code}`} data-code aria-hidden="true">
+      <div className="scene__frame scene__frame--back">
+        <p className={styles.code} data-code aria-hidden="true">
           {v.code}
         </p>
+      </div>
+      <div className="scene__frame">
         <div className={styles.copy}>
-          <p className="measure" data-reveal>
-            {String(index + 1).padStart(2, '0')} / {String(VARIANTS.length).padStart(2, '0')}
-          </p>
           <h3 id={`model-${v.id}`} className={`h2 ${styles.name}`} data-reveal>
             <span className="sr-only">{v.code} </span>
             {v.name}
@@ -33,7 +32,7 @@ function Panel({ v, index }: { v: Variant; index: number }) {
           <dl className={styles.readings} data-reveal>
             {v.readings.map(([k, val]) => (
               <div key={k} className={styles.reading}>
-                <dt className="measure">{k}</dt>
+                <dt className="label">{k}</dt>
                 <dd>{val}</dd>
               </div>
             ))}
@@ -51,8 +50,8 @@ export function Collection() {
       <h2 id="collection-title" className="sr-only">
         Collection
       </h2>
-      {VARIANTS.map((v, i) => (
-        <Panel key={v.id} v={v} index={i} />
+      {VARIANTS.map((v) => (
+        <Panel key={v.id} v={v} />
       ))}
     </section>
   )

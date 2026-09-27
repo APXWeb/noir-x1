@@ -23,7 +23,17 @@
   overflow: clip;
 }
 
-/* Beneath the WebGL stage: the watch passes in front of these words. */
+/*
+ * Back plane: a second sticky frame beneath the WebGL stage. It must be its own
+ * layer because a sticky element always forms a stacking context, which would
+ * trap a z-index: -1 child above the canvas.
+ */
+.scene__frame--back {
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Beneath the WebGL stage outside sticky frames (e.g. the hero). */
 .plane-back {
   position: relative;
   z-index: -1;

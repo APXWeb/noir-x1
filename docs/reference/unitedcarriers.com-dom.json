@@ -1,0 +1,448 @@
+{
+ "url": "https://unitedcarriers.com/",
+ "title": "United Carriers | Global Freight Forwarding and Logistics",
+ "viewport": {
+  "width": 1440,
+  "height": 900
+ },
+ "errors": [],
+ "colors": {
+  "pageBackground": "rgb(255, 255, 255)",
+  "backgroundColors": [
+   {
+    "value": "rgba(17, 17, 17, 0.72)",
+    "count": 140,
+    "areaPct": 0
+   },
+   {
+    "value": "rgb(255, 255, 255)",
+    "count": 21,
+    "areaPct": 82.6
+   },
+   {
+    "value": "rgba(17, 17, 17, 0.1)",
+    "count": 16,
+    "areaPct": 0
+   },
+   {
+    "value": "rgba(17, 17, 17, 0.16)",
+    "count": 8,
+    "areaPct": 0
+   },
+   {
+    "value": "rgb(17, 17, 17)",
+    "count": 6,
+    "areaPct": 9.2
+   },
+   {
+    "value": "rgba(255, 255, 255, 0.08)",
+    "count": 6,
+    "areaPct": 0
+   },
+   {
+    "value": "rgb(0, 0, 0)",
+    "count": 3,
+    "areaPct": 5.8
+   },
+   {
+    "value": "rgb(12, 12, 12)",
+    "count": 3,
+    "areaPct": 0.8
+   }
+  ],
+  "textColors": [
+   {
+    "value": "rgb(17, 17, 17)",
+    "count": 62
+   },
+   {
+    "value": "rgb(255, 255, 255)",
+    "count": 49
+   },
+   {
+    "value": "rgba(255, 255, 255, 0.6)",
+    "count": 36
+   },
+   {
+    "value": "rgba(17, 17, 17, 0.72)",
+    "count": 30
+   },
+   {
+    "value": "rgba(17, 17, 17, 0.16)",
+    "count": 24
+   },
+   {
+    "value": "rgba(0, 0, 0, 0)",
+    "count": 19
+   }
+  ],
+  "accentCandidates": [
+   {
+    "value": "rgb(17, 17, 17)",
+    "count": 25
+   },
+   {
+    "value": "rgb(255, 255, 255)",
+    "count": 25
+   },
+   {
+    "value": "rgba(17, 17, 17, 0.16)",
+    "count": 24
+   },
+   {
+    "value": "rgba(255, 255, 255, 0.6)",
+    "count": 12
+   },
+   {
+    "value": "rgba(17, 17, 17, 0.72)",
+    "count": 9
+   },
+   {
+    "value": "rgba(17, 17, 17, 0.4)",
+    "count": 3
+   }
+  ]
+ },
+ "typography": {
+  "uniqueFamilies": [
+   {
+    "value": "Helvetica Neue",
+    "count": 1464
+   },
+   {
+    "value": "BT Steinhart Mono",
+    "count": 92
+   },
+   {
+    "value": "BT Steinhart",
+    "count": 85
+   }
+  ],
+  "headings": {
+   "h1": {
+    "size": "80px",
+    "weight": "700",
+    "lineHeight": "84px",
+    "letterSpacing": "normal",
+    "family": "BT Steinhart"
+   },
+   "h2": {
+    "size": "60px",
+    "weight": "700",
+    "lineHeight": "63px",
+    "letterSpacing": "normal",
+    "family": "BT Steinhart"
+   },
+   "h3": {
+    "size": "24px",
+    "weight": "700",
+    "lineHeight": "30px",
+    "letterSpacing": "normal",
+    "family": "BT Steinhart"
+   }
+  },
+  "body": {
+   "size": "23.3333px",
+   "weight": "500",
+   "lineHeight": "28px",
+   "family": "Helvetica Neue",
+   "maxWidth": "none"
+  },
+  "sizeDistribution": [
+   {
+    "value": "13.3333px",
+    "count": 97
+   },
+   {
+    "value": "8.33333px",
+    "count": 30
+   },
+   {
+    "value": "10px",
+    "count": 30
+   },
+   {
+    "value": "26.6667px",
+    "count": 24
+   },
+   {
+    "value": "60px",
+    "count": 15
+   },
+   {
+    "value": "11.6667px",
+    "count": 12
+   },
+   {
+    "value": "23.3333px",
+    "count": 11
+   },
+   {
+    "value": "7.5px",
+    "count": 10
+   },
+   {
+    "value": "20px",
+    "count": 8
+   },
+   {
+    "value": "24px",
+    "count": 6
+   },
+   {
+    "value": "80px",
+    "count": 3
+   },
+   {
+    "value": "15px",
+    "count": 2
+   }
+  ],
+  "weightDistribution": [
+   {
+    "value": "500",
+    "count": 114
+   },
+   {
+    "value": "400",
+    "count": 99
+   },
+   {
+    "value": "700",
+    "count": 36
+   }
+  ]
+ },
+ "effects": {
+  "radii": [
+   {
+    "value": "99%",
+    "count": 149
+   },
+   {
+    "value": "50%",
+    "count": 17
+   },
+   {
+    "value": "1440px",
+    "count": 8
+   }
+  ],
+  "shadows": [
+   {
+    "value": "rgb(255, 188, 117) 0px 0.675px 1.35px 0px, rgb(255, 131, 74) 0px 5.39167px 10.8333px 0px, rgb(255, 85, 0) 0px -45.8333px 31.6667px -35px inset, rgb(50, 21, 0) 0",
+    "count": 1
+   },
+   {
+    "value": "rgb(1, 47, 255) 0px 59.1667px 60px -20px inset, rgb(2, 23, 119) 0px 156.667px 118.333px -34.1667px inset",
+    "count": 1
+   }
+  ],
+  "transitions": [
+   "all",
+   "opacity 0.35s, border-color 0.35s, height 0.35s, background-color 0.35s, width 0.35s",
+   "opacity 0.4s",
+   "color 0.4s",
+   "transform 0.45s",
+   "background-color 0.4s, transform 0.4s"
+  ]
+ },
+ "spacingDistribution": [
+  {
+   "value": "-1px",
+   "count": 37
+  },
+  {
+   "value": "13.3333px",
+   "count": 31
+  },
+  {
+   "value": "16px",
+   "count": 30
+  },
+  {
+   "value": "normal 10px",
+   "count": 28
+  },
+  {
+   "value": "16.6667px",
+   "count": 28
+  },
+  {
+   "value": "6.66667px",
+   "count": 21
+  },
+  {
+   "value": "3.33333px",
+   "count": 20
+  },
+  {
+   "value": "0px 16.6667px",
+   "count": 18
+  },
+  {
+   "value": "5px",
+   "count": 13
+  },
+  {
+   "value": "20px",
+   "count": 12
+  },
+  {
+   "value": "50px",
+   "count": 9
+  },
+  {
+   "value": "25px",
+   "count": 9
+  },
+  {
+   "value": "1.66667px",
+   "count": 8
+  },
+  {
+   "value": "normal 16.6667px",
+   "count": 8
+  },
+  {
+   "value": "11.6667px",
+   "count": 8
+  }
+ ],
+ "buttons": [
+  {
+   "fontSize": "13.3333px",
+   "fontWeight": "400",
+   "letterSpacing": "normal",
+   "textTransform": "none",
+   "borderRadius": "0px",
+   "paddingTop": "12.5px",
+   "paddingLeft": "33.3333px"
+  }
+ ],
+ "layout": {
+  "bodyPadding": "0px",
+  "containerMaxWidth": "none",
+  "containerPadding": "0px",
+  "containerWidth": "0px"
+ },
+ "cards": [],
+ "images": [
+  {
+   "src": "https://cdn.prod.website-files.com/6a44eec1ed1af2c4c403df6b/6a4cbda52be1c66e5c7763d0_b73f2865aae1538",
+   "naturalWidth": 1214,
+   "naturalHeight": 595,
+   "ratio": "2.04:1",
+   "renderedWidth": "505px",
+   "role": "feature"
+  },
+  {
+   "src": "https://cdn.prod.website-files.com/6a44eec1ed1af2c4c403df6b/6a4c6cb6a5d96145b3b34612_start-blur.avif",
+   "naturalWidth": 940,
+   "naturalHeight": 737,
+   "ratio": "1.28:1",
+   "renderedWidth": "892px",
+   "role": "hero"
+  },
+  {
+   "src": "https://cdn.prod.website-files.com/6a44eec1ed1af2c4c403df6b/6a4b96c759907c751a922995_7eca9aaa3d4bf61",
+   "naturalWidth": 940,
+   "naturalHeight": 1034,
+   "ratio": "0.91:1",
+   "renderedWidth": "1440px",
+   "role": "hero"
+  },
+  {
+   "src": "https://cdn.prod.website-files.com/6a44eec1ed1af2c4c403df6b/6a4cc04b2bdf99e8d70e6ecb_17937c6d05957a1",
+   "naturalWidth": 1440,
+   "naturalHeight": 1280,
+   "ratio": "1.13:1",
+   "renderedWidth": "0px",
+   "role": "thumbnail"
+  },
+  {
+   "src": "https://cdn.prod.website-files.com/6a44eec1ed1af2c4c403df6b/6a45d26642ae122cd6bead49_Hero-MB.png",
+   "naturalWidth": 590,
+   "naturalHeight": 1278,
+   "ratio": "0.46:1",
+   "renderedWidth": "0px",
+   "role": "thumbnail"
+  },
+  {
+   "src": "https://cdn.prod.website-files.com/6a44eec1ed1af2c4c403df6b/6a4cec26b4baea74514d7ab5_hero-blur-black",
+   "naturalWidth": 1440,
+   "naturalHeight": 1280,
+   "ratio": "1.13:1",
+   "renderedWidth": "1728px",
+   "role": "hero"
+  },
+  {
+   "src": "https://cdn.prod.website-files.com/6a44eec1ed1af2c4c403df6b/6a4cc04b2bdf99e8d70e6ecb_17937c6d05957a1",
+   "naturalWidth": 1440,
+   "naturalHeight": 1280,
+   "ratio": "1.13:1",
+   "renderedWidth": "1728px",
+   "role": "hero"
+  },
+  {
+   "src": "https://cdn.prod.website-files.com/6a44eec1ed1af2c4c403df6b/6a44eec1ed1af2c4c403dfca_intro-thumb.jpg",
+   "naturalWidth": 1440,
+   "naturalHeight": 914,
+   "ratio": "1.58:1",
+   "renderedWidth": "342px",
+   "role": "feature"
+  },
+  {
+   "src": "https://cdn.prod.website-files.com/6a44eec1ed1af2c4c403df6b/6a44eec1ed1af2c4c403e36b_frame_df.avif",
+   "naturalWidth": 2560,
+   "naturalHeight": 1440,
+   "ratio": "1.78:1",
+   "renderedWidth": "1339px",
+   "role": "hero"
+  },
+  {
+   "src": "https://cdn.prod.website-files.com/6a44eec1ed1af2c4c403df6b/6a44eec1ed1af2c4c403e3fb_container-white",
+   "naturalWidth": 368,
+   "naturalHeight": 428,
+   "ratio": "0.86:1",
+   "renderedWidth": "154px",
+   "role": "thumbnail"
+  }
+ ],
+ "spacingSamples": [
+  {
+   "tag": "h1",
+   "margin": "0px",
+   "padding": "0px",
+   "gap": "normal"
+  },
+  {
+   "tag": "p",
+   "margin": "0px",
+   "padding": "0px",
+   "gap": "normal"
+  },
+  {
+   "tag": "button",
+   "margin": "-4.16667px",
+   "padding": "12.5px 4.16667px 12.5px 33.3333px",
+   "gap": "normal 6.66667px"
+  },
+  {
+   "tag": "footer",
+   "margin": "0px",
+   "padding": "0px",
+   "gap": "normal"
+  }
+ ],
+ "sectionGaps": [],
+ "grid": {
+  "columns": 22,
+  "gap": "0px 16.6667px",
+  "template": "[full-width-start] 16.7969px [content-start] 70.2031px 70.2031px 70.2031px 70.2031px 70.2031px 70.2031px 70.2031px 70.20",
+  "selector": "div.w-layout-blockcontainer.container"
+ },
+ "gridCount": 25,
+ "focusVisible": false,
+ "reducedMotion": false
+}

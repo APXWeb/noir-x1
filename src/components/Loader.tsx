@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react'
-import { useProgress } from '@react-three/drei'
 import { gsap } from 'gsap'
 import { Wordmark } from './Wordmark'
 import { useStore } from '../state/store'
@@ -14,7 +13,9 @@ const MIN_MS = 1400
  */
 export function Loader({ webgl, reduced }: { webgl: boolean; reduced: boolean }) {
   const root = useRef<HTMLDivElement>(null)
-  const { progress, active } = useProgress()
+  const progress = useStore((s) => s.loadProgress)
+  const active = useStore((s) => s.loadActive)
+  const failed = useStore((s) => s.stageFailed)
   const [shown, setShown] = useState(0)
   const [gone, setGone] = useState(false)
   const setReady = useStore((s) => s.setReady)
@@ -25,7 +26,7 @@ export function Loader({ webgl, reduced }: { webgl: boolean; reduced: boolean })
   // Ease the displayed number toward real progress so it never jumps.
   useEffect(() => {
     let raf = 0
-    const target = webgl ? progress : 100
+    const target = webgl && !failed ? progress : 100
     const step = () => {
       setShown((s) => {
         const n = s + (target - s) * 0.12
@@ -35,9 +36,9 @@ export function Loader({ webgl, reduced }: { webgl: boolean; reduced: boolean })
     }
     raf = requestAnimationFrame(step)
     return () => cancelAnimationFrame(raf)
-  }, [progress, webgl])
+  }, [progress, webgl, failed])
 
-  const complete = (webgl ? progress >= 100 && !active : true) && shown >= 99.5
+  const complete = (webgl && !failed ? progress >= 100 && !active : true) && shown >= 99.5
 
   useEffect(() => {
     if (!complete || done.current) return
@@ -93,8 +94,8 @@ export function Loader({ webgl, reduced }: { webgl: boolean; reduced: boolean })
         </div>
       </div>
       <div className={styles.meta}>
-        <span className="measure" data-loader-meta>
-          Loading experience
+        <span className="label" data-loader-meta>
+          Calibrating
         </span>
         <span className={`measure ${styles.pct}`} data-loader-meta aria-hidden="true">
           {String(pct).padStart(3, '0')}

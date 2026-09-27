@@ -32,12 +32,14 @@ export function Materials() {
 
   return (
     <section ref={ref} id="materials" className={`scene ${styles.scene}`} data-pose="materials" data-theme="dark" aria-labelledby="materials-title">
-      <div className="scene__frame">
-        <p className={`plane-back ${styles.nameWrap}`} data-name aria-hidden="true">
+      <div className="scene__frame scene__frame--back">
+        <p className={styles.nameWrap} data-name aria-hidden="true">
           <span key={current.id} className={styles.name}>
             {current.name}
           </span>
         </p>
+      </div>
+      <div className="scene__frame">
 
         <div className={styles.controls} data-controls>
           <h2 id="materials-title" className={`h3 ${styles.title}`}>
@@ -71,7 +73,7 @@ export function Materials() {
               {current.line}
             </p>
             <p className="measure">
-              Density <span className={styles.value}>{current.reading}</span>
+              {current.readingLabel} <span className={styles.value}>{current.reading}</span>
             </p>
           </div>
         </div>

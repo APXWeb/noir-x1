@@ -6,8 +6,7 @@
   display: flex;
   align-items: flex-end;
   gap: var(--s-5);
-  color: var(--ink);
-  mix-blend-mode: difference;
+  color: var(--z10);
   transition: opacity 400ms ease;
 }
 
@@ -59,41 +58,45 @@
   align-items: center;
   justify-content: flex-end;
   width: 28px;
-  height: 11px;
+  /* 24px targets (WCAG 2.5.8) with the hairlines still reading as a scale. */
+  height: 24px;
 }
 
 .tick::before {
   content: '';
   display: block;
-  width: 10px;
+  width: 26px;
   height: var(--hairline);
   background: var(--z7);
+  transform: scaleX(0.385);
+  transform-origin: right;
   transition:
-    width 420ms var(--ease-out),
+    transform 420ms var(--ease-out),
     background-color 200ms ease;
 }
 
 .tick[aria-current='step']::before {
-  width: 26px;
+  transform: none;
   background: var(--z10);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .tick:hover::before {
-    width: 18px;
+    transform: scaleX(0.7);
     background: var(--z10);
   }
 }
 
 @media (max-width: 767px) {
+  /* Phones: the readout moves to the top edge, clear of each scene's copy. */
   .rail {
-    left: var(--gutter);
-    right: auto;
-    bottom: var(--s-4);
+    top: calc(var(--header-h) + var(--s-1));
+    bottom: auto;
+    right: var(--gutter);
   }
   .readout {
-    justify-items: start;
-    text-align: left;
+    grid-auto-flow: column;
+    gap: var(--s-3);
   }
   .ticks {
     display: none;

@@ -52,3 +52,5 @@ export function WatchModel() {
 }
 
 useGLTF.preload(MODEL_URL, false, true)
+
+if (import.meta.env.DEV) (window as unknown as { __watch: typeof watchRef }).__watch = watchRef

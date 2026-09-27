@@ -78,13 +78,14 @@
 }
 
 .quote {
-  grid-column: 9 / span 4;
+  grid-column: 8 / span 5;
   align-self: center;
   margin: 0;
 }
 
 .quote :global(.h2) {
-  font-size: clamp(2rem, 1rem + 2.6vw, 4rem);
+  /* SPECIFICATION ≈ 9.7em: keep it inside five columns. */
+  font-size: clamp(1.75rem, 1rem + 1.8vw, 3rem);
 }
 
 .timeline {
@@ -102,6 +103,7 @@
 }
 
 .timeline :global(.measure) {
+  /* Years are measurements of time: mono stays. */
   color: var(--z4);
   padding-top: 0.2em;
 }

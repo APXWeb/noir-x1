@@ -20,12 +20,12 @@ export function Approach() {
   return (
     <section ref={ref} id="x1" className={`scene ${styles.scene}`} data-pose="approach" data-theme="dark" aria-labelledby="approach-title">
       <div className="scene__frame">
-        <h2 id="approach-title" className={`display plane-back ${styles.title}`}>
+        <h2 id="approach-title" className={`display plane-front ${styles.title}`}>
           <span data-word className={styles.top}>
-            Time,
+            Nothing
           </span>{' '}
           <span data-word className={styles.bottom}>
-            redefined.
+            extra.
           </span>
         </h2>
         <p className={`lead ${styles.copy}`} data-copy>

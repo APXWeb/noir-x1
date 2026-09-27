@@ -27,6 +27,6 @@ try {
   await server.close()
 }
 
-execSync(`npx gltf-transform optimize ${RAW} ${OUT} --compress meshopt --texture-compress webp --texture-size 2048 --simplify false --join false --instance false --flatten false --palette false`, { stdio: 'inherit' })
+execSync(`npx gltf-transform optimize ${RAW} ${OUT} --compress meshopt --texture-compress webp --texture-size 2048 --prune-attributes false --simplify false --join false --instance false --flatten false --palette false`, { stdio: 'inherit' })
 const [a, b] = await Promise.all([stat(RAW), stat(OUT)])
 console.log(`raw ${(a.size / 1024).toFixed(0)} KB → optimised ${(b.size / 1024).toFixed(0)} KB`)

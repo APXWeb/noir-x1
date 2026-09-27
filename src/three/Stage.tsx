@@ -7,6 +7,7 @@ import { onTrackChange, poseOf, track } from '../animation/poseTrack'
 import { CameraRig } from './CameraRig'
 import { Lighting } from './Lighting'
 import { WatchModel } from './WatchModel'
+import { ProgressBridge, StageBoundary } from './StageBoundary'
 import styles from './Stage.module.css'
 
 const ExploreControls = lazy(() => import('./ExploreControls'))
@@ -43,6 +44,7 @@ export default function Stage() {
   }, [])
 
   return (
+    <StageBoundary>
     <div ref={wrap} className={styles.stage} data-mode={mode} aria-hidden={mode !== 'explore'}>
       <Canvas
         dpr={dpr}
@@ -50,7 +52,10 @@ export default function Stage() {
         frameloop={visible ? 'always' : 'demand'}
         camera={{ fov: 30, position: [0, 0, 13], near: 0.1, far: 100 }}
         gl={{ antialias: quality !== 'low', alpha: true, powerPreference: 'high-performance', toneMapping: THREE.AgXToneMapping, toneMappingExposure: 1.05 }}
-        onCreated={({ gl }) => gl.setClearColor(0x000000, 0)}
+        onCreated={({ gl }) => {
+          gl.setClearColor(0x000000, 0)
+          gl.domElement.addEventListener('webglcontextlost', () => useStore.setState({ stageFailed: true }))
+        }}
       >
         <PerformanceMonitor
           flipflops={3}
@@ -69,6 +74,8 @@ export default function Stage() {
           {mode === 'explore' && <ExploreControls />}
         </Suspense>
       </Canvas>
+      <ProgressBridge />
     </div>
+    </StageBoundary>
   )
 }

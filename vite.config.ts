@@ -10,10 +10,12 @@ export default defineConfig({
     rollupOptions: {
       input: { main: 'index.html' },
       output: {
+        // React stays with the app; three + R3F load only with the lazy stage.
         manualChunks(id) {
-          if (id.includes('node_modules/three/')) return 'three'
-          if (id.includes('@react-three')) return 'r3f'
-          if (id.includes('node_modules/gsap') || id.includes('node_modules/lenis')) return 'motion'
+          const m = id.split('\\').join('/')
+          if (/node_modules\/(react|react-dom|scheduler|zustand)\//.test(m)) return 'react'
+          if (/node_modules\/(three|three-stdlib|@react-three|maath|meshline|troika|camera-controls|@monogrid|stats)/.test(m)) return 'three'
+          if (/node_modules\/(gsap|lenis)\//.test(m)) return 'motion'
         },
       },
     },

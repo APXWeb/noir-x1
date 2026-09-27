@@ -44,7 +44,7 @@
   padding-inline: var(--s-2);
   margin-right: calc(var(--s-2) * -1);
 }
-.close :global(.measure) {
+.close :global(.label) {
   color: var(--z9);
 }
 .close svg {

@@ -23,12 +23,13 @@
 .w2 {
   align-self: center;
   justify-self: end;
-  color: var(--z5);
+  color: var(--z7);
 }
 
 .w3 {
   justify-self: center;
-  color: var(--z3);
+  /* Deepest plane, dimmest ink that still reads as text (3.6:1). */
+  color: var(--z6);
 }
 
 @media (max-width: 767px) {

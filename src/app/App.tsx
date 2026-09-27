@@ -38,6 +38,7 @@ function Experience() {
   const reduced = useReducedMotion()
   const mobile = useIsMobile()
   const setQuality = useStore((s) => s.setQuality)
+  const stageFailed = useStore((s) => s.stageFailed)
 
   useEffect(() => setQuality(initialQuality()), [setQuality])
   useEffect(() => startScroll({ reduced, mobile }), [reduced, mobile])
@@ -50,16 +51,15 @@ function Experience() {
       </a>
       <Loader webgl={webgl} reduced={reduced} />
       <Header />
-      {webgl ? (
+      {webgl && !stageFailed ? (
         <Suspense fallback={null}>
           <Stage />
         </Suspense>
       ) : (
         <FallbackStage />
       )}
-      <PositionRail />
       <Cursor />
-      {webgl && <ExploreOverlay />}
+      {webgl && !stageFailed && <ExploreOverlay />}
       <main id="main">
         <Hero />
         <Approach />
@@ -69,12 +69,14 @@ function Experience() {
         <Engineering />
         <Materials />
         <Complete />
-        {webgl && <ExploreIntro />}
+        {webgl && !stageFailed && <ExploreIntro />}
         <Collection />
         <Story />
         <Finale />
       </main>
       <Footer />
+      {/* After the content in the DOM so keyboard users reach the story first. */}
+      <PositionRail />
     </>
   )
 }

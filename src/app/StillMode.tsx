@@ -1,5 +1,4 @@
 import { Suspense, lazy, useEffect } from 'react'
-import { useProgress } from '@react-three/drei'
 import { blendPoses, poseOf, track } from '../animation/poseTrack'
 import { intro } from '../animation/intro'
 import { useStore } from '../state/store'
@@ -17,7 +16,8 @@ declare global {
  * no UI, for Story imagery and the no-WebGL fallback (scripts/capture-stills.mjs).
  */
 export function StillMode({ pose }: { pose: string }) {
-  const { progress, active } = useProgress()
+  const progress = useStore((s) => s.loadProgress)
+  const active = useStore((s) => s.loadActive)
 
   useEffect(() => {
     track.mobile = window.innerWidth < 768

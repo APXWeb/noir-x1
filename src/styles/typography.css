@@ -64,6 +64,18 @@
   line-height: 1.4;
 }
 
+/* Label: small expanded caps for UI words that are not measurements. */
+.label {
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 118;
+  font-size: var(--t-micro);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  line-height: 1.4;
+}
+
 /* Masked line reveal scaffolding (used by SplitLines). */
 .line {
   display: block;
