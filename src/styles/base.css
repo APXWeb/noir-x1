@@ -5,6 +5,8 @@
 }
 
 html {
+  /* Clip on the root so mobile layout viewports never widen to fit display type. */
+  overflow-x: clip;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   background: var(--z0);

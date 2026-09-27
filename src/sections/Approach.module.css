@@ -31,7 +31,8 @@
 
 @media (max-width: 767px) {
   .title {
-    font-size: clamp(2.4rem, 12.5vw, 4rem);
+    /* REDEFINED. = 7.4em */
+    font-size: min(11.8vw, 4rem);
     align-content: start;
     gap: 44svh;
   }

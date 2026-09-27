@@ -5,7 +5,7 @@ import { track, poseOf } from '../animation/poseTrack'
 import { intro } from '../animation/intro'
 import { INTRO_FROM } from '../data/poses'
 import { useStore } from '../state/store'
-import { DEG, damp, lerp } from '../utils/math'
+import { DEG, clamp, damp, lerp } from '../utils/math'
 
 const target = new THREE.Vector3()
 const lookAt = new THREE.Vector3()
@@ -19,7 +19,7 @@ const fine = typeof window !== 'undefined' && window.matchMedia('(hover: hover) 
 export function CameraRig({ children, stageEl, onStageHidden }: { children: ReactNode; stageEl: HTMLElement | null; onStageHidden?: () => void }) {
   const group = useRef<THREE.Group>(null)
   const tilt = useRef<THREE.Group>(null)
-  const { camera, pointer } = useThree()
+  const { camera, pointer, size } = useThree()
   const persp = camera as THREE.PerspectiveCamera
   const mode = useStore((s) => s.mode)
 
@@ -34,6 +34,11 @@ export function CameraRig({ children, stageEl, onStageHidden }: { children: Reac
     const reduced = track.reduced
     const lambda = reduced ? 1000 : 3.6
 
+    // Aspect fit: portrait screens pull the camera back and scale the watch's
+    // offset with it, so each composition keeps its on-screen proportions.
+    const aspect = size.width / size.height
+    const fit = track.mobile ? clamp(0.78 / aspect, 1, 2) : clamp(1.5 / aspect, 1, 1.5)
+
     const i = intro.t
     const from = track.mobile ? INTRO_FROM.mobile : INTRO_FROM.desktop
     const wp = src ? src.watch.pos : r.watchPos
@@ -43,8 +48,8 @@ export function CameraRig({ children, stageEl, onStageHidden }: { children: Reac
     const sway = exploring ? 0 : Math.sin(state.clock.elapsedTime * 0.45) * 16 * r.spin
 
     g.position.set(
-      damp(g.position.x, lerp(from.pos[0], wp[0], i), lambda, dt),
-      damp(g.position.y, lerp(from.pos[1], wp[1], i), lambda, dt),
+      damp(g.position.x, lerp(from.pos[0], wp[0], i) * fit, lambda, dt),
+      damp(g.position.y, lerp(from.pos[1], wp[1], i) * fit, lambda, dt),
       damp(g.position.z, lerp(from.pos[2], wp[2], i), lambda, dt),
     )
     g.rotation.set(
@@ -60,12 +65,12 @@ export function CameraRig({ children, stageEl, onStageHidden }: { children: Reac
     t.rotation.x = damp(t.rotation.x, allowTilt ? -pointer.y * 3 * DEG : 0, 3, dt)
 
     if (!exploring) {
+      target.set(r.camTarget[0] * fit, r.camTarget[1] * fit, r.camTarget[2])
       camera.position.set(
-        damp(camera.position.x, r.camPos[0], lambda, dt),
-        damp(camera.position.y, r.camPos[1], lambda, dt),
-        damp(camera.position.z, r.camPos[2], lambda, dt),
+        damp(camera.position.x, target.x + (r.camPos[0] - r.camTarget[0]) * fit, lambda, dt),
+        damp(camera.position.y, target.y + (r.camPos[1] - r.camTarget[1]) * fit, lambda, dt),
+        damp(camera.position.z, target.z + (r.camPos[2] - r.camTarget[2]) * fit, lambda, dt),
       )
-      target.set(...r.camTarget)
       lookAt.lerp(target, 1 - Math.exp(-lambda * dt))
       camera.lookAt(lookAt)
       if (Math.abs(persp.fov - r.fov) > 0.01) {

@@ -33,7 +33,8 @@
 
 @media (max-width: 767px) {
   .title {
-    font-size: clamp(2.4rem, 13vw, 4rem);
+    /* PRECISION. = 7.05em */
+    font-size: min(12.4vw, 4rem);
   }
   .w2 {
     align-self: end;

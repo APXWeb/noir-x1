@@ -10,6 +10,7 @@
 
 .scene > * {
   grid-area: 1 / 1;
+  min-width: 0;
 }
 
 .scene__frame {

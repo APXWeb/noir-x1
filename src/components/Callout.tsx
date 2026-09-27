@@ -15,6 +15,8 @@ export function Callout(props: PointProps | SpanProps) {
   const root = useRef<HTMLDivElement>(null)
   const path = useRef<SVGPathElement>(null)
   const labelEl = useRef<HTMLDivElement>(null)
+  const lastDx = useRef(0)
+  const lastDy = useRef(0)
 
   useEffect(() => {
     let raf = 0
@@ -44,6 +46,18 @@ export function Callout(props: PointProps | SpanProps) {
         if (!p) return
         el.style.transform = `translate3d(${p.x}px, ${p.y}px, 0)`
         el.style.setProperty('--facing', p.facing.toFixed(2))
+        // Flip the leader when the label would leave the viewport.
+        const room = 170
+        let dx = props.dx
+        if (p.x + dx < room) dx = Math.abs(dx)
+        else if (p.x + dx > window.innerWidth - room) dx = -Math.abs(dx)
+        const dy = p.y + props.dy < 80 ? Math.abs(props.dy) : props.dy
+        if (dx !== lastDx.current || dy !== lastDy.current) {
+          lastDx.current = dx
+          lastDy.current = dy
+          path.current?.setAttribute('d', `M0 0 L${dx * 0.55} ${dy} L${dx} ${dy}`)
+          labelEl.current!.style.transform = `translate(${dx}px, ${dy}px) translate(${dx < 0 ? 'calc(-100% - 10px)' : '10px'}, -50%)`
+        }
       }
     }
     raf = requestAnimationFrame(tick)

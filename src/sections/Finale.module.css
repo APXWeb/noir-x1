@@ -36,7 +36,8 @@
   .title {
     align-self: start;
     margin-top: 8svh;
-    font-size: clamp(3rem, 17vw, 5rem);
+    /* REFINED. = 5.67em */
+    font-size: min(15.5vw, 5rem);
     gap: 40svh;
   }
   .actions {
