@@ -1,0 +1,151 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-27T00:00:00Z",
+  "title": "Design System: NOIR X1",
+  "extensions": {
+    "colorMeta": {
+      "z0-graphite": { "role": "neutral", "displayName": "Graphite Zone 0", "canonical": "#0c0c0d", "tonalRamp": ["#0c0c0d", "#131315", "#1b1b1e", "#252528", "#333337", "#48484c", "#6c6a67", "#8f8c87", "#b2aea7", "#d3cfc8", "#ece8e1"] },
+      "z1": { "role": "neutral", "displayName": "Zone 1", "canonical": "#131315" },
+      "z2": { "role": "neutral", "displayName": "Zone 2", "canonical": "#1b1b1e" },
+      "z3": { "role": "neutral", "displayName": "Zone 3", "canonical": "#252528" },
+      "z4": { "role": "neutral", "displayName": "Zone 4", "canonical": "#333337" },
+      "z5": { "role": "neutral", "displayName": "Zone 5", "canonical": "#48484c" },
+      "z6": { "role": "neutral", "displayName": "Zone 6", "canonical": "#6c6a67" },
+      "z7": { "role": "neutral", "displayName": "Zone 7", "canonical": "#8f8c87" },
+      "z8": { "role": "neutral", "displayName": "Zone 8", "canonical": "#b2aea7" },
+      "z9": { "role": "neutral", "displayName": "Zone 9", "canonical": "#d3cfc8" },
+      "z10-bone": { "role": "neutral", "displayName": "Bone Zone 10", "canonical": "#ece8e1", "tonalRamp": ["#0c0c0d", "#131315", "#1b1b1e", "#252528", "#333337", "#48484c", "#6c6a67", "#8f8c87", "#b2aea7", "#d3cfc8", "#ece8e1"] },
+      "signal": { "role": "primary", "displayName": "Signal Orange", "canonical": "#ff5a1f", "tonalRamp": ["oklch(25% 0.08 40)", "oklch(35% 0.12 40)", "oklch(45% 0.16 40)", "oklch(55% 0.19 40)", "oklch(68% 0.21 40)", "oklch(78% 0.14 40)", "oklch(87% 0.08 40)", "oklch(95% 0.03 40)"] }
+    },
+    "semanticRoles": {
+      "dark": { "ground": "var(--z0)", "ink": "var(--z10)", "ink-2": "var(--z8)", "ink-3": "var(--z7)", "rule": "color-mix(in oklab, var(--z10) 16%, transparent)", "rule-strong": "color-mix(in oklab, var(--z10) 34%, transparent)" },
+      "light (Story only, [data-theme='light'])": { "ground": "var(--z10)", "ink": "var(--z0)", "ink-2": "var(--z4)", "ink-3": "var(--z5)", "rule": "color-mix(in oklab, var(--z0) 14%, transparent)", "rule-strong": "color-mix(in oklab, var(--z0) 32%, transparent)" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "All-caps scene statements; per-scene size set from the measured em width of the longest word, noted in a CSS comment." },
+      "display-mega": { "displayName": "Display Mega", "purpose": "Finale statement." },
+      "headline": { "displayName": "Headline", "purpose": "All-caps section statements, including the Story quote." },
+      "title": { "displayName": "Title", "purpose": "Sentence-case sub-heads such as spec names." },
+      "lead": { "displayName": "Lead", "purpose": "The one sentence of a scene, max 34ch, ink-2." },
+      "body": { "displayName": "Body", "purpose": "Supporting prose, max 44ch, ink-2." },
+      "label": { "displayName": "Label", "purpose": "UI words that are not measurements: nav, CTA text, spec terms, captions, hints." },
+      "measure": { "displayName": "Measure", "purpose": "Geist Mono, only for measured values, positions and years." }
+    },
+    "shadows": [
+      { "name": "swatch-ring", "value": "inset 0 0 0 1px color-mix(in oklab, var(--z10) 30%, transparent)", "purpose": "Outlines a material swatch circle. The only shadow in the system; nothing is lifted." }
+    ],
+    "depthPlanes": [
+      { "name": "back-plane (scene)", "value": "second sticky 100svh frame, z-index: -1, pointer-events: none", "purpose": "Display type beneath the transparent WebGL canvas inside scroll scenes." },
+      { "name": "back-plane (free)", "value": "position: relative; z-index: -1", "purpose": "Same, outside sticky frames (hero)." },
+      { "name": "front-plane", "value": "position: relative; z-index: 2", "purpose": "Copy and controls above the stage." },
+      { "name": "translucent header", "value": "color-mix(in oklab, var(--ground) 82%, transparent); backdrop-filter: blur(14px) saturate(1.1)", "purpose": "Header ground once content scrolls under it." }
+    ],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(0.23, 1, 0.32, 1)", "purpose": "Arrivals, UI response, CTA reach, reveals." },
+      { "name": "ease-in-out", "value": "cubic-bezier(0.77, 0, 0.175, 1)", "purpose": "Loops and scene handoffs." },
+      { "name": "ease-silk", "value": "cubic-bezier(0.65, 0, 0.35, 1)", "purpose": "Declared token for smooth symmetric moves." },
+      { "name": "dur-press", "value": "140ms", "purpose": "Active press scale (0.97)." },
+      { "name": "dur-ui", "value": "220ms", "purpose": "UI state transitions." },
+      { "name": "dur-scene", "value": "900ms", "purpose": "Scene-scale arrivals." },
+      { "name": "scroll-scrub", "value": "GSAP ScrollTrigger + Lenis; damped pose rig", "purpose": "Scenes are scrubbed by scroll; reduced motion snaps poses and keeps content static." }
+    ],
+    "breakpoints": [
+      { "name": "phone", "value": "max-width: 767px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "CTA",
+      "kind": "button",
+      "refersTo": "cta-primary",
+      "description": "The one call-to-action form: expanded-caps label and a hairline that extends toward the action.",
+      "html": "<a class=\"ds-cta\" href=\"#\"><span>Discover X1</span><span class=\"ds-cta-rule\" aria-hidden=\"true\"><svg viewBox=\"0 0 12 12\" class=\"ds-cta-head\"><path d=\"M6.5 1.5 11 6l-4.5 4.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\"/></svg></span></a>",
+      "css": ".ds-cta { position: relative; display: inline-flex; align-items: center; gap: 1rem; min-height: 48px; padding-block: 0.75rem; font-family: var(--font-display, 'Archivo Variable', Archivo, sans-serif); font-variation-settings: 'wdth' 120; font-weight: 600; font-size: 0.8125rem; letter-spacing: 0.14em; text-transform: uppercase; color: #ece8e1; background: none; text-decoration: none; transition: transform 140ms cubic-bezier(0.23,1,0.32,1); } .ds-cta:active { transform: scale(0.97); } .ds-cta-rule { --reach: 32px; position: relative; display: block; width: 88px; height: 12px; margin-right: calc(var(--reach) * -1); } .ds-cta-rule::before { content: ''; position: absolute; left: 0; right: 1px; top: 50%; height: 1px; background: currentColor; transform: scaleX(0.636); transform-origin: left; transition: transform 520ms cubic-bezier(0.23,1,0.32,1); } .ds-cta-head { position: absolute; right: 0; top: 0; width: 12px; height: 12px; transform: translateX(calc(var(--reach) * -1)); transition: transform 520ms cubic-bezier(0.23,1,0.32,1); } .ds-cta:hover .ds-cta-rule::before, .ds-cta:focus-visible .ds-cta-rule::before { transform: scaleX(1); } .ds-cta:hover .ds-cta-head, .ds-cta:focus-visible .ds-cta-head { transform: none; } .ds-cta:focus-visible { outline: 1px solid #ff5a1f; outline-offset: 5px; }"
+    },
+    {
+      "name": "CTA Quiet",
+      "kind": "button",
+      "refersTo": "cta-quiet",
+      "description": "Secondary CTA in ink-2 with a shorter resting rule.",
+      "html": "<a class=\"ds-cta-quiet\" href=\"#\"><span>Back to the beginning</span><span class=\"ds-cta-quiet-rule\" aria-hidden=\"true\"></span></a>",
+      "css": ".ds-cta-quiet { display: inline-flex; align-items: center; gap: 1rem; min-height: 48px; font-family: var(--font-display, 'Archivo Variable', Archivo, sans-serif); font-variation-settings: 'wdth' 120; font-weight: 600; font-size: 0.8125rem; letter-spacing: 0.14em; text-transform: uppercase; color: #b2aea7; text-decoration: none; transition: color 220ms ease; } .ds-cta-quiet-rule { display: block; width: 88px; height: 1px; background: currentColor; transform: scaleX(0.318); transform-origin: left; transition: transform 520ms cubic-bezier(0.23,1,0.32,1); } .ds-cta-quiet:hover { color: #ece8e1; } .ds-cta-quiet:hover .ds-cta-quiet-rule, .ds-cta-quiet:focus-visible .ds-cta-quiet-rule { transform: scaleX(0.5); } .ds-cta-quiet:focus-visible { outline: 1px solid #ff5a1f; outline-offset: 5px; }"
+    },
+    {
+      "name": "Material Option",
+      "kind": "chip",
+      "refersTo": "material-option",
+      "description": "Radiogroup pill for switching the watch finish; checked state raises a signal index notch.",
+      "html": "<div role=\"radiogroup\" class=\"ds-mat-group\"><button role=\"radio\" aria-checked=\"true\" class=\"ds-mat\"><span class=\"ds-mat-swatch\" style=\"--swatch:#8f8c87\"></span><span class=\"ds-mat-name\">Titanium</span></button><button role=\"radio\" aria-checked=\"false\" class=\"ds-mat\"><span class=\"ds-mat-swatch\" style=\"--swatch:#1b1b1e\"></span><span class=\"ds-mat-name\">Obsidian</span></button></div>",
+      "css": ".ds-mat-group { display: flex; flex-wrap: wrap; gap: 0.5rem; } .ds-mat { display: inline-flex; align-items: center; gap: 0.75rem; min-height: 44px; padding: 0.5rem 1rem 0.5rem 0.75rem; border: 1px solid color-mix(in oklab, #ece8e1 16%, transparent); border-radius: 999px; background: none; color: #b2aea7; cursor: pointer; transition: border-color 240ms ease, color 240ms ease, transform 140ms cubic-bezier(0.23,1,0.32,1); } .ds-mat:hover { color: #ece8e1; border-color: color-mix(in oklab, #ece8e1 34%, transparent); } .ds-mat:active { transform: scale(0.97); } .ds-mat:focus-visible { outline: 1px solid #ff5a1f; outline-offset: 5px; } .ds-mat[aria-checked='true'] { color: #ece8e1; border-color: #ece8e1; } .ds-mat-swatch { position: relative; width: 14px; height: 14px; border-radius: 50%; background: var(--swatch); box-shadow: inset 0 0 0 1px color-mix(in oklab, #ece8e1 30%, transparent); } .ds-mat-swatch::after { content: ''; position: absolute; left: 50%; top: -5px; width: 1.5px; height: 4px; margin-left: -0.75px; background: #ff5a1f; opacity: 0; transform: translateY(3px); transition: opacity 200ms ease, transform 360ms cubic-bezier(0.23,1,0.32,1); } .ds-mat[aria-checked='true'] .ds-mat-swatch::after { opacity: 1; transform: none; } .ds-mat-name { font-family: var(--font-display, 'Archivo Variable', Archivo, sans-serif); font-variation-settings: 'wdth' 118; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; }"
+    },
+    {
+      "name": "Callout",
+      "kind": "custom",
+      "refersTo": "callout-chip",
+      "description": "Graticule callout: signal reticle, hairline leader and a mono reading chip with a signal edge.",
+      "html": "<div class=\"ds-callout\"><span class=\"ds-callout-marker\"></span><svg class=\"ds-callout-leader\" width=\"80\" height=\"30\" viewBox=\"0 0 80 30\"><path d=\"M0 30 L30 0 H80\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\" stroke-opacity=\"0.85\"/></svg><span class=\"ds-callout-chip\"><span class=\"ds-callout-name\">Movement</span><span class=\"ds-callout-value\">28 800 vph · 72 h</span></span></div>",
+      "css": ".ds-callout { position: relative; display: inline-flex; align-items: flex-start; color: #ece8e1; padding-top: 4px; } .ds-callout-marker { position: relative; width: 11px; height: 11px; margin-top: 28px; border: 1px solid #ff5a1f; border-radius: 50%; } .ds-callout-marker::after { content: ''; position: absolute; inset: 3.5px; border-radius: 50%; background: #ff5a1f; } .ds-callout-leader { margin-left: -5px; } .ds-callout-chip { display: grid; gap: 2px; margin-top: -10px; padding: 5px 8px 6px; background: color-mix(in oklab, #0c0c0d 82%, transparent); border-left: 1px solid #ff5a1f; font-family: var(--font-mono, 'Geist Mono Variable', 'Geist Mono', monospace); font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; font-variant-numeric: tabular-nums slashed-zero; white-space: nowrap; } .ds-callout-name { color: #8f8c87; } .ds-callout-value { color: #ece8e1; font-size: 0.8125rem; letter-spacing: 0.06em; }"
+    },
+    {
+      "name": "Position Rail",
+      "kind": "custom",
+      "description": "Certification readout with hairline tick targets; the current position extends in bone.",
+      "html": "<nav class=\"ds-rail\" aria-label=\"Positions\"><div class=\"ds-rail-readout\"><span class=\"ds-rail-measure\"><span class=\"ds-rail-num\">POS. 04</span> <span class=\"ds-rail-of\">/ 12</span></span><span class=\"ds-rail-measure\">Dial up · seconds</span></div><div class=\"ds-rail-ticks\"><button class=\"ds-rail-tick\" aria-label=\"Position 3\"></button><button class=\"ds-rail-tick\" aria-current=\"step\" aria-label=\"Position 4\"></button><button class=\"ds-rail-tick\" aria-label=\"Position 5\"></button></div></nav>",
+      "css": ".ds-rail { display: flex; align-items: flex-end; gap: 1.5rem; color: #ece8e1; } .ds-rail-readout { display: grid; justify-items: end; gap: 2px; padding: 4px 8px; background: color-mix(in oklab, #0c0c0d 72%, transparent); text-align: right; } .ds-rail-measure { font-family: var(--font-mono, 'Geist Mono Variable', 'Geist Mono', monospace); font-size: 0.6875rem; font-weight: 450; letter-spacing: 0.08em; text-transform: uppercase; font-variant-numeric: tabular-nums slashed-zero; color: #d3cfc8; } .ds-rail-num { color: #ece8e1; } .ds-rail-of { color: #8f8c87; } .ds-rail-ticks { display: flex; flex-direction: column; } .ds-rail-tick { display: flex; align-items: center; justify-content: flex-end; width: 28px; height: 24px; padding: 0; border: 0; background: none; cursor: pointer; } .ds-rail-tick::before { content: ''; display: block; width: 26px; height: 1px; background: #8f8c87; transform: scaleX(0.385); transform-origin: right; transition: transform 420ms cubic-bezier(0.23,1,0.32,1), background-color 200ms ease; } .ds-rail-tick:hover::before { transform: scaleX(0.7); background: #ece8e1; } .ds-rail-tick[aria-current='step']::before { transform: none; background: #ece8e1; } .ds-rail-tick:focus-visible { outline: 1px solid #ff5a1f; outline-offset: 2px; }"
+    },
+    {
+      "name": "Header Navigation",
+      "kind": "nav",
+      "description": "Wordmark, label-style links with a wiping hairline underline, bracketed Explore entry.",
+      "html": "<header class=\"ds-nav\"><span class=\"ds-nav-logo\">NOIR</span><ul class=\"ds-nav-list\"><li><a class=\"ds-nav-link\" href=\"#\">Collection</a></li><li><a class=\"ds-nav-link\" href=\"#\">X1</a></li><li><a class=\"ds-nav-link\" href=\"#\">Craft</a></li></ul><button class=\"ds-nav-explore\"><span aria-hidden=\"true\">[</span>Explore<span aria-hidden=\"true\">]</span></button></header>",
+      "css": ".ds-nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 4.25rem; padding-inline: 2rem; color: #ece8e1; background: #0c0c0d; } .ds-nav-logo { justify-self: start; font-family: var(--font-display, 'Archivo Variable', Archivo, sans-serif); font-variation-settings: 'wdth' 125; font-weight: 600; font-size: 1.125rem; letter-spacing: 0.02em; } .ds-nav-list { display: flex; gap: 2rem; margin: 0; padding: 0; list-style: none; } .ds-nav-link, .ds-nav-explore { font-family: var(--font-display, 'Archivo Variable', Archivo, sans-serif); font-variation-settings: 'wdth' 118; font-size: 0.6875rem; font-weight: 560; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; } .ds-nav-link { position: relative; display: inline-block; padding-block: 0.75rem; color: #b2aea7; transition: color 200ms ease; } .ds-nav-link::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0.45rem; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform 360ms cubic-bezier(0.23,1,0.32,1); } .ds-nav-link:hover, .ds-nav-link:focus-visible { color: #ece8e1; } .ds-nav-link:hover::after { transform: scaleX(1); transform-origin: left; } .ds-nav-link:focus-visible, .ds-nav-explore:focus-visible { outline: 1px solid #ff5a1f; outline-offset: 5px; } .ds-nav-explore { justify-self: end; display: inline-flex; gap: 0.55em; padding: 0.75rem 0; font-weight: 600; color: #ece8e1; background: none; border: 0; cursor: pointer; } .ds-nav-explore > span { font-weight: 300; transition: transform 360ms cubic-bezier(0.23,1,0.32,1); } .ds-nav-explore:hover > span:first-child { transform: translateX(-4px); } .ds-nav-explore:hover > span:last-child { transform: translateX(4px); }"
+    },
+    {
+      "name": "Explore Control",
+      "kind": "button",
+      "refersTo": "explore-control",
+      "description": "44px hairline pill controls for free-explore mode.",
+      "html": "<div class=\"ds-ctrls\"><button class=\"ds-ctrl\" aria-label=\"Zoom in\"><svg viewBox=\"0 0 12 12\"><path d=\"M6 1v10M1 6h10\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\"/></svg></button><button class=\"ds-ctrl\" aria-label=\"Zoom out\"><svg viewBox=\"0 0 12 12\"><path d=\"M1 6h10\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\"/></svg></button><button class=\"ds-ctrl ds-ctrl-reset\">Reset</button></div>",
+      "css": ".ds-ctrls { display: flex; gap: 0.25rem; } .ds-ctrl { display: grid; place-items: center; min-width: 44px; height: 44px; border: 1px solid color-mix(in oklab, #ece8e1 16%, transparent); border-radius: 999px; background: none; color: #d3cfc8; cursor: pointer; transition: border-color 200ms ease, color 200ms ease, transform 140ms cubic-bezier(0.23,1,0.32,1); } .ds-ctrl svg { width: 12px; height: 12px; } .ds-ctrl:hover { color: #ece8e1; border-color: color-mix(in oklab, #ece8e1 34%, transparent); } .ds-ctrl:active { transform: scale(0.94); } .ds-ctrl:focus-visible { outline: 1px solid #ff5a1f; outline-offset: 5px; } .ds-ctrl-reset { padding-inline: 1rem; margin-left: 0.5rem; font-family: var(--font-display, 'Archivo Variable', Archivo, sans-serif); font-variation-settings: 'wdth' 118; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Silêncio calibrado",
+    "overview": "NOIR is a dark studio where a single object is carried through calibrated test positions, and every scene reads like one line of a chronometer certification bulletin. The interface recedes to a graphite ground, bone ink and hairlines; the real 3D watch is the only thing allowed to be loud, and even it speaks through one orange seconds hand. Density is deliberately low: one expanded-caps statement, one sentence, one measured reading per scene.\n\nThree borrowed instruments shape the world. A darkroom zone ramp supplies the only tonal scale. An oscilloscope graticule supplies the hairline rules and leader lines that lock onto parts of the watch with a measured value. A multiplane camera supplies depth: display type sits on planes behind and in front of the WebGL watch, so the object crosses the words.",
+    "keyCharacteristics": [
+      "One 11-step neutral ramp (z0 to z10) carries every surface, ink and rule.",
+      "One chromatic signal, reserved for the seconds hand and live measurement marks.",
+      "Archivo expanded capitals for statements; Geist Mono only for things that were measured.",
+      "Hairlines (1px) instead of fills, boxes or shadows.",
+      "Type on depth planes behind and in front of the 3D object.",
+      "Scroll-scrubbed scenes; UI motion is transform and opacity only."
+    ],
+    "rules": [
+      { "name": "The Zone Ramp Rule", "body": "Every surface, ink and rule resolves to a zone step or a transparent mix of one. No new neutrals, no tinted greys, no gradients between hues.", "section": "colors" },
+      { "name": "The One Signal Rule", "body": "Signal Orange marks time passing or a value being read. If an element is neither the seconds hand nor a live measurement (or the focus ring), it is not orange.", "section": "colors" },
+      { "name": "The Role Flip Rule", "body": "The light scene (Story) sets `data-theme='light'`, which flips the semantic roles (ground to z10, ink to z0, ink-2 to z4, ink-3 to z5); the ramp itself never changes. Light is one scene, not a second theme.", "section": "colors" },
+      { "name": "The Measured Mono Rule", "body": "Geist Mono prints only what an instrument could read: millimetres, bar, Hz, vph, positions, rates, years. A word that is not a value is a label, set in Archivo.", "section": "typography" },
+      { "name": "The Measured Width Rule", "body": "Display sizes are chosen from the longest word's em width against the space it must clear, and the measurement is recorded next to the value. Never size a statement by eye.", "section": "typography" },
+      { "name": "The Two-Tone Step Rule", "body": "A multi-line statement may step its second line inward (0.9em, 0.6em on phones) and drop it to z6 (z5 on bone). One step per statement.", "section": "typography" },
+      { "name": "The Multiplane Rule", "body": "Display type lives on a plane behind or in front of the object, never in a box beside it. On phones a statement may move to the front plane so it crosses the strap instead.", "section": "elevation" },
+      { "name": "The No-Lift Rule", "body": "Nothing casts a shadow. The only inset shadow in the system is the 1px bone ring that outlines a material swatch.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do take every neutral from the z0..z10 ramp or a transparent oklab mix of it.",
+      "Do keep Signal Orange to the seconds hand and live measurement marks (reticle, chip edge, selected index notch, pressed pin, measured unit), plus the focus ring.",
+      "Do set statements in Archivo width 125 capitals, sized from the measured em width of the longest word, with the measurement noted beside the value.",
+      "Do use Geist Mono only for measured values, positions and years; use the Archivo width-118 label for every other UI word.",
+      "Do put display type on a depth plane relative to the watch rather than beside it in a container.",
+      "Do make every CTA the label-plus-extending-hairline form, animated by transform only.",
+      "Do keep touch targets at 44px (24px for rail ticks) and honour reduced motion by snapping poses."
+    ],
+    "donts": [
+      "Don't introduce a second accent hue or use signal for emphasis, headings, backgrounds or decoration.",
+      "Don't add drop shadows or raised cards; separate with hairlines and translucent graphite.",
+      "Don't set non-measured words in mono, or measured values in the label face.",
+      "Don't use filled button slabs or pill-shaped CTAs; pills belong to selection chips and explore controls only.",
+      "Don't make light a site-wide theme; the Story scene is the one role flip.",
+      "Don't animate width, height or layout properties for UI state."
+    ]
+  }
+}

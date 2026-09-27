@@ -69,9 +69,11 @@
   position: absolute;
   left: 26px;
   top: -6px;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 118;
+  font-weight: 600;
+  font-size: var(--t-micro);
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   opacity: 0;
   transform: translateX(-4px);
