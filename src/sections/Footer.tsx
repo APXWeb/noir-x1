@@ -5,7 +5,7 @@ import styles from './Footer.module.css'
 
 export function Footer() {
   return (
-    <footer className={styles.footer} data-theme="dark">
+    <footer className={styles.footer} data-theme="dark" data-pose="end">
       <div className={styles.top}>
         <Wordmark className={styles.mark} />
         <p className={`body ${styles.claim}`}>Precision without compromise.</p>

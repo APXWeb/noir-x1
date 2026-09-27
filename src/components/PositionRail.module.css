@@ -16,6 +16,8 @@
 }
 
 .readout {
+  padding: 4px 8px;
+  background: color-mix(in oklab, var(--z0) 72%, transparent);
   display: grid;
   justify-items: end;
   gap: 2px;

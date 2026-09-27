@@ -20,7 +20,7 @@ export const SCENES: Scene[] = [
   { id: 'explore', title: 'Explore', poses: ['explore'] },
   { id: 'collection', title: 'Collection', poses: ['x1', 'x2', 'x3'] },
   { id: 'about', title: 'Story', poses: ['story'] },
-  { id: 'finale', title: 'Time, refined', poses: ['finale'] },
+  { id: 'finale', title: 'Time, refined', poses: ['finale', 'end'] },
 ]
 
 export const sceneIndexOfPose = (pose: string) => Math.max(0, SCENES.findIndex((s) => s.poses.includes(pose)))

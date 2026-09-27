@@ -52,7 +52,7 @@ const desktop: PoseTable = {
   },
   profile: {
     label: 'Crown right · edge',
-    watch: { pos: [-1.7, -0.1, 0], rot: [-84, 0, -6] },
+    watch: { pos: [-2.15, -0.1, 0], rot: [-84, 0, -6] },
     cam: { pos: [0, 0.3, 9.4], target: [0, 0, 0] },
     key: 10,
     strap: 0,
@@ -166,6 +166,10 @@ const desktop: PoseTable = {
     spin: 0.6,
   },
 }
+
+// The footer is an anchor too: the stage fades out as it rises, so the finale's
+// CTAs never slide across the dial.
+desktop.end = { ...desktop.finale, label: 'Complete', stage: 0 }
 
 /** Mobile overrides: the watch leads from the upper half, text lives below. */
 const mobileOverrides: Partial<Record<string, Partial<Pose>>> = {

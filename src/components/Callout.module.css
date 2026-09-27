@@ -40,16 +40,20 @@
 .svg {
   position: absolute;
   overflow: visible;
+  /* The global svg max-width: 100% would collapse this 1px viewport to 0 and
+     a zero-size SVG draws nothing. */
+  max-width: none;
+  width: 1px;
+  height: 1px;
 }
 
 .path {
   fill: none;
   stroke: currentColor;
   stroke-width: 1;
-  stroke-opacity: 0.7;
+  stroke-opacity: 0.85;
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
-  vector-effect: non-scaling-stroke;
   transition: stroke-dashoffset 900ms var(--ease-out) 120ms;
 }
 
@@ -69,6 +73,10 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   font-variant-numeric: tabular-nums slashed-zero;
+  /* A graphite chip so the reading holds on metal as well as on the ground. */
+  padding: 5px 8px 6px;
+  background: color-mix(in oklab, var(--z0) 82%, transparent);
+  border-left: var(--hairline) solid var(--signal);
 }
 
 .name {

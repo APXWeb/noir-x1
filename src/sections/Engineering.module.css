@@ -56,12 +56,15 @@
   color: var(--ink-2) !important;
 }
 
-/* Under test, the heading names the part; the record line keeps only its reading. */
-.term {
-  transition: opacity 300ms ease;
+/* Under test, the heading and its reading replace the record line. */
+.row[data-active='true'] .rowHead {
+  display: none;
 }
-.row[data-active='true'] .term {
-  opacity: 0;
+.row[data-active='true'] .detail > div {
+  padding-top: var(--s-4);
+}
+.detailReading {
+  color: var(--ink) !important;
 }
 
 .bulletin {

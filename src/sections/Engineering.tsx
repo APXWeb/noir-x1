@@ -51,7 +51,9 @@ export function Engineering() {
                 </div>
                 <div className={styles.detail}>
                   <div>
+                    <p className="label">{s.term}</p>
                     <h3 className={`h3 ${styles.specTitle}`}>{s.title}</h3>
+                    <p className={`measure ${styles.detailReading}`}>{s.reading}</p>
                     <p className="body">{s.body}</p>
                     {s.bulletin && (
                       <table className={styles.bulletin}>
