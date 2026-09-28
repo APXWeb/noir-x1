@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
-import { useThree } from '@react-three/fiber'
+import { useFrame, useThree } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import type { OrbitControls as OrbitImpl } from 'three-stdlib'
 import { exploreBus, type ExploreCommand } from '../animation/exploreBus'
@@ -18,6 +18,24 @@ const off = new THREE.Vector3()
 export default function ExploreControls() {
   const ref = useRef<OrbitImpl>(null)
   const { camera, invalidate } = useThree()
+  // A camera flight in progress (spherical target), used for the exploded view.
+  const flight = useRef<THREE.Spherical | null>(null)
+
+  useFrame((_, dt) => {
+    const c = ref.current
+    const goal = flight.current
+    if (!c || !goal) return
+    off.copy(camera.position).sub(c.target)
+    sph.setFromVector3(off)
+    const k = 1 - Math.exp(-3.2 * Math.min(dt, 0.1))
+    sph.theta += (goal.theta - sph.theta) * k
+    sph.phi += (goal.phi - sph.phi) * k
+    sph.radius += (goal.radius - sph.radius) * k
+    off.setFromSpherical(sph)
+    camera.position.copy(c.target).add(off)
+    c.update()
+    if (Math.abs(goal.theta - sph.theta) + Math.abs(goal.phi - sph.phi) + Math.abs(goal.radius - sph.radius) * 0.05 < 0.002) flight.current = null
+  })
 
   useEffect(() => {
     const c = ref.current
@@ -52,6 +70,10 @@ export default function ExploreControls() {
           return apply(0, 0, 0.8)
         case 'out':
           return apply(0, 0, 1.25)
+        case 'profile':
+          // Three-quarter side view: the whole layer stack reads front to back.
+          flight.current = new THREE.Spherical(track.mobile ? 21 : 15, 1.25, 1.05)
+          return
         case 'reset': {
           const r = track.mobile ? 17 : 13
           camera.position.set(0, 0, r)

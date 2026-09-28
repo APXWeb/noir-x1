@@ -1,5 +1,5 @@
 /** Tiny command bus between the DOM explore overlay and the 3D controls. */
-export type ExploreCommand = 'left' | 'right' | 'up' | 'down' | 'in' | 'out' | 'reset'
+export type ExploreCommand = 'left' | 'right' | 'up' | 'down' | 'in' | 'out' | 'reset' | 'profile'
 
 const listeners = new Set<(c: ExploreCommand) => void>()
 

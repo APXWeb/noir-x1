@@ -42,7 +42,9 @@ Useful query params:
 
 ## The 3D model
 
-`public/models/noir-x1.glb` is authored procedurally in `src/three/watch/buildWatch.ts`: lathe case, extruded lugs, knurled bezel and crown, domed sapphire, sunray dial with anisotropy, applied indices, hands, pushers, exhibition caseback with rotor and balance, and a swept rubber strap. Canvas textures (dial print, bezel, rehaut, caseback engraving, Côtes de Genève, forged carbon) are drawn in `textures.ts`. No third-party models, images or HDRIs are used; the studio lighting is built from virtual softboxes (`Lighting.tsx`).
+`public/models/noir-x1.glb` is authored procedurally in `src/three/watch/buildWatch.ts`: lathe case, extruded lugs, knurled bezel and crown, domed sapphire, sunray dial with anisotropy, applied indices, hands, pushers, exhibition caseback with a three-dimensional movement (Côtes de Genève bridges, gilt gear train, blued screws, free-sprung balance with hairspring, bevelled rotor), and a swept rubber strap with keepers and a tang buckle. Case and lugs carry anisotropic circular brushing. Explore mode adds an exploded view that separates every layer along the watch's axis.
+
+A ready-made model was evaluated first (Sketchfab, CC-BY: render-lab "Stainless Steel Wristwatch", Dilroop S. Gill "Wrist Watch 2.0", Lazaran "Wrist Watch"); none had a rotor or movement, and their styles did not fit NOIR, so the procedural model was kept and improved. Canvas textures (dial print, bezel, rehaut, caseback engraving, Côtes de Genève, forged carbon) are drawn in `textures.ts`. No third-party models, images or HDRIs are used; the studio lighting is built from virtual softboxes (`Lighting.tsx`).
 
 ```bash
 npm run export:glb      # procedural source → GLB (Playwright + GLTFExporter) → gltf-transform (meshopt + webp)

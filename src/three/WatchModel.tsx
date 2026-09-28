@@ -3,7 +3,7 @@ import { useFrame, useThree } from '@react-three/fiber'
 import { useGLTF } from '@react-three/drei'
 import { useStore } from '../state/store'
 import { VARIANTS } from '../data/collection'
-import { applyQuality, bindWatch, setDialAndBezel, setFinish, setStrapPresence, stepLook, stepMovement, type BoundWatch } from './watch/bindWatch'
+import { applyQuality, bindWatch, setDialAndBezel, setFinish, setStrapPresence, stepExplode, stepLook, stepMovement, type BoundWatch } from './watch/bindWatch'
 import { track } from '../animation/poseTrack'
 import { damp } from '../utils/math'
 import { projectAnchors } from './anchors'
@@ -37,12 +37,17 @@ export function WatchModel() {
   }, [bound, material, variantId])
 
   const strap = useRef(1)
+  const explode = useRef(0)
 
   useFrame((state, dt) => {
     const d = Math.min(dt, 0.1)
-    const target = useStore.getState().mode === 'explore' ? 1 : track.resolved.strap
+    const { mode, exploded } = useStore.getState()
+    const target = mode === 'explore' ? (exploded ? 0 : 1) : track.resolved.strap
     strap.current = track.reduced ? target : damp(strap.current, target, 5, d)
     setStrapPresence(bound, strap.current)
+    const ex = mode === 'explore' && exploded ? 1 : 0
+    explode.current = track.reduced ? ex : damp(explode.current, ex, 4, d)
+    stepExplode(bound, explode.current)
     stepMovement(bound, state.clock.elapsedTime, d)
     stepLook(bound, d)
     projectAnchors(bound.nodes, state.camera, size.width, size.height)

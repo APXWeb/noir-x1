@@ -92,6 +92,14 @@ export function bindWatch(scene: THREE.Object3D): BoundWatch {
       buckle.material = bm
     }
     mats['M_Buckle'] = bm
+    const tang = nodes[NODE.tang] as THREE.Mesh | undefined
+    if (tang) tang.material = bm
+  }
+
+  // Rest positions for the exploded view.
+  for (const name in EXPLODE) {
+    const o = nodes[name]
+    if (o && !o.userData.rest) o.userData.rest = o.position.clone()
   }
 
   const dial = mats[MAT.dial]
@@ -141,6 +149,15 @@ export function setFinish(w: BoundWatch, id: MaterialId) {
   w.target.polishedRough = f.polished.roughness
   w.target.strap.set(f.strap)
 
+  // Circular brushing on the case flank and lugs; forged carbon has none.
+  for (const name of [MAT.metal, 'M_Lugs']) {
+    const m = w.mats[name] as THREE.MeshPhysicalMaterial | undefined
+    const aniso = f.metal.carbon ? 0 : 0.6
+    if (m && m.anisotropy !== aniso) {
+      m.anisotropy = aniso
+      m.needsUpdate = true
+    }
+  }
   if (w.target.carbon !== !!f.metal.carbon) {
     w.target.carbon = !!f.metal.carbon
     const pairs: [string, () => THREE.Texture][] = [
@@ -256,8 +273,50 @@ export function setStrapPresence(w: BoundWatch, v: number) {
     m.opacity = v
     m.depthWrite = v > 0.6
   }
-  for (const n of [NODE.strapTop, NODE.strapBottom, NODE.buckle]) {
+  for (const n of [NODE.strapTop, NODE.strapBottom, NODE.buckle, NODE.tang, NODE.keepers]) {
     const o = w.nodes[n]
     if (o) o.visible = v > 0.01
+  }
+}
+
+/**
+ * Exploded view: each layer's offset from rest, in head units (1 = 10 mm).
+ * Along Z for the stack; the crown and pushers pull out radially.
+ */
+export const EXPLODE: Record<string, [number, number, number]> = {
+  [NODE.crystal]: [0, 0, 1.6],
+  [NODE.bezel]: [0, 0, 1.1],
+  [NODE.bezelInsert]: [0, 0, 1.1],
+  [NODE.handCap]: [0, 0, 0.8],
+  [NODE.secondHand]: [0, 0, 0.74],
+  [NODE.minuteHand]: [0, 0, 0.6],
+  [NODE.hourHand]: [0, 0, 0.46],
+  [NODE.indices]: [0, 0, 0.3],
+  [NODE.indexLume]: [0, 0, 0.3],
+  [NODE.dial]: [0, 0, 0.2],
+  [NODE.rehaut]: [0, 0, 0.2],
+  [NODE.movement]: [0, 0, -0.4],
+  Jewels: [0, 0, -0.75],
+  [NODE.wheels]: [0, 0, -0.6],
+  [NODE.bridges]: [0, 0, -0.8],
+  [NODE.screws]: [0, 0, -0.9],
+  [NODE.balance]: [0, 0, -0.85],
+  [NODE.rotor]: [0, 0, -1.2],
+  [NODE.caseback]: [0, 0, -1.6],
+  CasebackEngraving: [0, 0, -1.6],
+  [NODE.casebackGlass]: [0, 0, -1.6],
+  [NODE.crown]: [0.7, 0, 0],
+  [NODE.crownTube]: [0.35, 0, 0],
+  [NODE.pusherTop]: [0.5 * Math.cos(Math.PI / 5.2), 0.5 * Math.sin(Math.PI / 5.2), 0],
+  [NODE.pusherBottom]: [0.5 * Math.cos(Math.PI / 5.2), -0.5 * Math.sin(Math.PI / 5.2), 0],
+}
+
+export function stepExplode(w: BoundWatch, t: number) {
+  for (const name in EXPLODE) {
+    const o = w.nodes[name]
+    const rest = o?.userData.rest as THREE.Vector3 | undefined
+    if (!o || !rest) continue
+    const [x, y, z] = EXPLODE[name]
+    o.position.set(rest.x + x * t, rest.y + y * t, rest.z + z * t)
   }
 }

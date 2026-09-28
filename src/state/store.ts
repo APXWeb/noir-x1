@@ -12,6 +12,8 @@ interface State {
   material: MaterialId
   variant: VariantId
   mode: Mode
+  /** Explore mode: layers pulled apart along the watch's axis. */
+  exploded: boolean
   quality: Quality
   hotspot: string | null
   /** Index of the pose anchor nearest the viewport centre. */
@@ -28,6 +30,7 @@ interface State {
   setMaterial: (m: MaterialId) => void
   setVariant: (v: VariantId) => void
   setMode: (m: Mode) => void
+  setExploded: (v: boolean) => void
   setQuality: (q: Quality) => void
   setHotspot: (h: string | null) => void
   setScene: (i: number) => void
@@ -39,6 +42,7 @@ export const useStore = create<State>((set, get) => ({
   material: 'titanium',
   variant: 'x1',
   mode: 'scroll',
+  exploded: false,
   quality: 'high',
   hotspot: null,
   scene: 0,
@@ -50,7 +54,8 @@ export const useStore = create<State>((set, get) => ({
   setIntroDone: (introDone) => set({ introDone }),
   setMaterial: (material) => get().material !== material && set({ material, sweep: get().sweep + 1 }),
   setVariant: (variant) => get().variant !== variant && set({ variant, sweep: get().sweep + 1 }),
-  setMode: (mode) => set({ mode, hotspot: null }),
+  setMode: (mode) => set({ mode, hotspot: null, exploded: false }),
+  setExploded: (exploded) => set({ exploded }),
   setQuality: (quality) => set({ quality }),
   setHotspot: (hotspot) => set({ hotspot }),
   setScene: (scene) => get().scene !== scene && set({ scene }),

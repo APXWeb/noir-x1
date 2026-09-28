@@ -233,6 +233,13 @@
   padding-inline: var(--s-4);
   margin-left: var(--s-2);
 }
+.reset[aria-pressed='true'] {
+  border-color: var(--z10);
+  color: var(--z10);
+}
+.reset[aria-pressed='true'] :global(.label) {
+  color: var(--z10);
+}
 
 .hint {
   position: absolute;

@@ -27,6 +27,8 @@ export function ExploreOverlay() {
   const setMode = useStore((s) => s.setMode)
   const hotspot = useStore((s) => s.hotspot)
   const setHotspot = useStore((s) => s.setHotspot)
+  const exploded = useStore((s) => s.exploded)
+  const setExploded = useStore((s) => s.setExploded)
   const root = useRef<HTMLDivElement>(null)
   const pins = useRef<Record<string, HTMLButtonElement | null>>({})
   const returnFocus = useRef<HTMLElement | null>(null)
@@ -166,6 +168,14 @@ export function ExploreOverlay() {
             </svg>
           </button>
         ))}
+        <button type="button" className={`${styles.ctrl} ${styles.reset}`} aria-pressed={exploded}
+          onClick={() => {
+            if (!exploded) exploreBus.emit('profile')
+            setExploded(!exploded)
+          }}
+        >
+          <span className="label">Exploded view</span>
+        </button>
         <button type="button" className={`${styles.ctrl} ${styles.reset}`} onClick={() => exploreBus.emit('reset')}>
           <span className="label">Reset</span>
         </button>

@@ -410,29 +410,147 @@ function buildBack(m: WatchMaterials) {
   g.castShadow = false
   out.push(g)
 
-  // Movement plate, rotor and balance behind the window.
+  // Movement: main plate, raised bridges with Côtes de Genève, a gilt gear
+  // train, blued screws, a free-sprung balance with its hairspring, and a
+  // bevelled rotor — everything a visitor looks for through the caseback.
   const plate = new THREE.CircleGeometry(1.45, 96)
   plate.rotateY(Math.PI)
   plate.translate(0, 0, -0.36)
   out.push(mesh(NODE.movement, plate, m.movement))
 
+  const bridgeShapes: THREE.Shape[] = []
+  // Barrel bridge: a broad lobe over the mainspring barrel.
+  const barrel = new THREE.Shape()
+  barrel.absarc(0.42, 0.38, 0.62, 0, Math.PI * 2, false)
+  barrel.holes.push(new THREE.Path().absarc(0.42, 0.38, 0.12, 0, Math.PI * 2, true))
+  bridgeShapes.push(barrel)
+  // Train bridge: a curved bar sweeping across the lower half.
+  const train = new THREE.Shape()
+  train.moveTo(-1.25, 0.25)
+  train.quadraticCurveTo(-0.5, -0.05, 0.2, -1.2)
+  train.lineTo(0.52, -1.1)
+  train.quadraticCurveTo(-0.3, 0.2, -1.2, 0.62)
+  train.closePath()
+  bridgeShapes.push(train)
+  // Balance cock: a single arm reaching over the balance.
+  const cock = new THREE.Shape()
+  cock.moveTo(-1.4, -0.2)
+  cock.lineTo(-0.66, -0.47)
+  cock.absarc(-0.62, -0.55, 0.1, Math.PI * 0.8, Math.PI * 2.2, true)
+  cock.lineTo(-1.32, -0.62)
+  cock.closePath()
+  bridgeShapes.push(cock)
+  const bridges = bridgeShapes.map((sh) => {
+    const g = extrude(sh, 0.05, 0.012, 2)
+    g.translate(0, 0, -0.44)
+    g.clearGroups()
+    return g.index ? g.toNonIndexed() : g
+  })
+  out.push(mesh(NODE.bridges, mergeGeometries(bridges)!, m.movement))
+
+  // Gilt gear train peeking between the bridges.
+  const gear = (r: number, teeth: number) => {
+    const sh = new THREE.Shape()
+    for (let i = 0; i <= teeth * 2; i++) {
+      const a = (i / (teeth * 2)) * Math.PI * 2
+      const rr = i % 2 ? r : r * 0.9
+      if (i === 0) sh.moveTo(Math.cos(a) * rr, Math.sin(a) * rr)
+      else sh.lineTo(Math.cos(a) * rr, Math.sin(a) * rr)
+    }
+    // Four crossings, the way wheels are skeletonised.
+    for (let k = 0; k < 4; k++) {
+      const a0 = (k / 4) * Math.PI * 2 + 0.25
+      const hole = new THREE.Path()
+      hole.absarc(0, 0, r * 0.72, a0, a0 + Math.PI / 2 - 0.5, false)
+      hole.absarc(0, 0, r * 0.28, a0 + Math.PI / 2 - 0.5, a0, true)
+      sh.holes.push(hole)
+    }
+    const g = extrude(sh, 0.018, 0, 1)
+    g.clearGroups()
+    return g
+  }
+  const gearMat = new THREE.MeshStandardMaterial({ name: 'M_Gear', color: '#c7a468', metalness: 1, roughness: 0.28 })
+  const wheels: THREE.BufferGeometry[] = []
+  for (const [x, y, r, t] of [
+    [-0.25, 0.62, 0.3, 48],
+    [0.95, -0.35, 0.22, 36],
+    [-0.95, 0.9, 0.18, 30],
+  ] as const) {
+    const g = gear(r, t)
+    g.translate(x, y, -0.395)
+    wheels.push(g.index ? g.toNonIndexed() : g)
+  }
+  out.push(mesh(NODE.wheels, mergeGeometries(wheels)!, gearMat))
+
+  // Blued screws holding each bridge down.
+  const screwMat = new THREE.MeshPhysicalMaterial({ name: 'M_Screw', color: '#27408f', metalness: 1, roughness: 0.22, clearcoat: 0.6 })
+  const screws: THREE.BufferGeometry[] = []
+  for (const [x, y] of [
+    [0.9, 0.78],
+    [-0.05, 0.72],
+    [0.95, 0.0],
+    [-1.05, 0.38],
+    [0.3, -1.05],
+    [-1.25, -0.35],
+    [-1.2, -0.52],
+  ]) {
+    const g = new THREE.CylinderGeometry(0.038, 0.038, 0.025, 20)
+    g.rotateX(Math.PI / 2)
+    g.translate(x, y, -0.46)
+    screws.push(g)
+    // Slot across the head.
+    const slot = new THREE.BoxGeometry(0.066, 0.01, 0.012)
+    slot.translate(x, y, -0.473)
+    screws.push(slot)
+  }
+  out.push(mesh(NODE.screws, mergeGeometries(screws.map((g) => (g.index ? g.toNonIndexed() : g)))!, screwMat))
+
+  // Rotor: a bevelled half-disc with a heavier rim, on a polished hub.
   const rotorGroup = new THREE.Group()
   rotorGroup.name = NODE.rotor
   const rotorMat = new THREE.MeshStandardMaterial({ name: 'M_Rotor', map: createRotorTexture(), metalness: 1, roughness: 0.25 })
-  const rotorGeo = new THREE.RingGeometry(0.16, 1.32, 96, 1, 0, Math.PI)
+  const half = new THREE.Shape()
+  half.absarc(0, 0, 1.32, 0, Math.PI, false)
+  half.absarc(0, 0, 0.16, Math.PI, 0, true)
+  const rotorGeo = extrude(half, 0.03, 0.012, 3)
+  rotorGeo.clearGroups()
   rotorGeo.rotateY(Math.PI)
+  // Planar UVs for the circular graining texture (extrude UVs are world units).
+  const rp = rotorGeo.attributes.position as THREE.BufferAttribute
+  const ruv = rotorGeo.attributes.uv as THREE.BufferAttribute
+  for (let i = 0; i < rp.count; i++) ruv.setXY(i, -rp.getX(i) / 2.64 + 0.5, rp.getY(i) / 2.64 + 0.5)
   const rotor = mesh('RotorWeight', rotorGeo, rotorMat)
-  const hubGeo = new THREE.CylinderGeometry(0.16, 0.16, 0.04, 32)
+  const rim = new THREE.Shape()
+  rim.absarc(0, 0, 1.33, 0, Math.PI, false)
+  rim.absarc(0, 0, 1.12, Math.PI, 0, true)
+  const rimGeo = extrude(rim, 0.06, 0.01, 2)
+  rimGeo.clearGroups()
+  rimGeo.rotateY(Math.PI)
+  rimGeo.translate(0, 0, -0.01)
+  const rotorRim = mesh('RotorRim', rimGeo, m.metalPolished)
+  const hubGeo = new THREE.CylinderGeometry(0.16, 0.16, 0.06, 32)
   hubGeo.rotateX(Math.PI / 2)
   const hub = mesh('RotorHub', hubGeo, m.metalPolished)
-  rotorGroup.add(rotor, hub)
-  rotorGroup.position.z = -0.52
+  rotorGroup.add(rotor, rotorRim, hub)
+  rotorGroup.position.z = -0.515
 
+  // Balance: rim, crossed arms and a Breguet-style hairspring.
   const balance = new THREE.Group()
   balance.name = NODE.balance
-  const wheel = mesh('BalanceWheel', new THREE.TorusGeometry(0.3, 0.022, 10, 64), m.metalPolished)
-  const arm = mesh('BalanceArm', new THREE.BoxGeometry(0.6, 0.03, 0.02), m.metalPolished)
-  balance.add(wheel, arm)
+  const wheel = mesh('BalanceWheel', new THREE.TorusGeometry(0.3, 0.022, 10, 64), gearMat)
+  const arm = mesh('BalanceArm', new THREE.BoxGeometry(0.6, 0.03, 0.02), gearMat)
+  const arm2 = mesh('BalanceArm2', new THREE.BoxGeometry(0.03, 0.6, 0.02), gearMat)
+  const spiral = new THREE.CurvePath<THREE.Vector3>()
+  const pts: THREE.Vector3[] = []
+  for (let i = 0; i <= 220; i++) {
+    const t = i / 220
+    const a = t * Math.PI * 2 * 7
+    const r = 0.04 + t * 0.2
+    pts.push(new THREE.Vector3(Math.cos(a) * r, Math.sin(a) * r, 0.02))
+  }
+  spiral.add(new THREE.CatmullRomCurve3(pts))
+  const spring = mesh(NODE.hairspring, new THREE.TubeGeometry(spiral.curves[0], 440, 0.004, 4, false), screwMat)
+  balance.add(wheel, arm, arm2, spring)
   balance.position.set(-0.62, -0.55, -0.42)
 
   // Jewels: a few rubies set into the plate.
@@ -496,7 +614,25 @@ function buildStrap(m: WatchMaterials) {
   const buckle = mesh(NODE.buckle, bg, m.metalPolished)
   // Parallel to the strap at the back of the loop, on its outer face (−Z).
   buckle.position.set(0, -0.2, -4.98)
-  return [strapTop, strapBottom, buckle]
+
+  // Tang: the pin that crosses the frame and seats in the strap.
+  const tangGeo = new THREE.CylinderGeometry(0.035, 0.03, 0.86, 16)
+  const tang = mesh(NODE.tang, tangGeo, m.metalPolished)
+  tang.position.set(0, -0.2, -4.96)
+
+  // Two keepers holding the strap's tail: rubber frames around the strap section.
+  const keeperShape = new THREE.Shape([V2(-1.08, -0.2), V2(1.08, -0.2), V2(1.08, 0.2), V2(-1.08, 0.2)])
+  keeperShape.holes.push(new THREE.Path([V2(-1.0, -0.14), V2(-1.0, 0.14), V2(1.0, 0.14), V2(1.0, -0.14)]))
+  const keepers = [0.45, 0.8].map((y) => {
+    const g = extrude(keeperShape, 0.16, 0.02, 2)
+    g.clearGroups()
+    // Shape XY → strap cross-section (X width, Z thickness); extrusion runs along Y.
+    g.rotateX(-Math.PI / 2)
+    g.translate(0, y, -4.58)
+    return g.index ? g.toNonIndexed() : g
+  })
+  const keeper = mesh(NODE.keepers, mergeGeometries(keepers)!, m.strap)
+  return [strapTop, strapBottom, buckle, tang, keeper]
 }
 
 /* ----------------------------------------------------------------- build */

@@ -18,14 +18,14 @@ export interface AnchorDef {
 }
 
 export const ANCHORS: Record<string, AnchorDef> = {
-  crown: { node: 'Head', local: [2.46, 0, -0.1], normal: [1, 0, 0] },
+  crown: { node: 'Crown', local: [0.27, 0, 0], normal: [1, 0, 0] },
   secondsTip: { node: 'SecondHand', local: [0, 1.5, 0.01], normal: [0, 0, 1] },
-  lug: { node: 'Head', local: [1.22, 2.45, 0.02], normal: [0.2, 0.6, 0.77] },
-  crystal: { node: 'Head', local: [-0.9, 0.9, 0.46], normal: [0, 0, 1] },
-  caseback: { node: 'Head', local: [0.2, -0.3, -0.62], normal: [0, 0, -1] },
-  bezel: { node: 'Head', local: [1.35, 1.35, 0.41], normal: [0, 0, 1] },
-  dial: { node: 'Head', local: [0, -0.9, 0.12], normal: [0, 0, 1] },
-  pusher: { node: 'Head', local: [2.3, 1.2, -0.1], normal: [0.87, 0.5, 0] },
+  lug: { node: 'Lugs', local: [1.22, 2.45, 0.02], normal: [0.2, 0.6, 0.77] },
+  crystal: { node: 'Crystal', local: [-0.9, 0.9, 0.46], normal: [0, 0, 1] },
+  caseback: { node: 'Caseback', local: [0.2, -0.3, -0.62], normal: [0, 0, -1] },
+  bezel: { node: 'Bezel', local: [1.35, 1.35, 0.41], normal: [0, 0, 1] },
+  dial: { node: 'Dial', local: [0, -0.9, 0.02], normal: [0, 0, 1] },
+  pusher: { node: 'PusherTop', local: [2.3, 0, 0], normal: [1, 0, 0] },
   strap: { node: 'StrapBottom', local: [0, -3.05, -2.7], normal: [0, -0.6, 0.8] },
   edgeTop: { node: 'Head', local: [-2.05, 0, 0.41], normal: [-1, 0, 0] },
   edgeBottom: { node: 'Head', local: [-2.05, 0, -0.6], normal: [-1, 0, 0] },
