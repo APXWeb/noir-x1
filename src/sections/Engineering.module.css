@@ -81,7 +81,7 @@
 .bulletin td {
   padding: var(--s-2) 0;
   border-top: var(--hairline) solid var(--rule);
-  font-weight: 450;
+  font-weight: 500;
 }
 .bulletin td {
   color: var(--ink) !important;

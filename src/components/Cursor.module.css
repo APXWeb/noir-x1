@@ -70,10 +70,10 @@
   left: 26px;
   top: -6px;
   font-family: var(--font-display);
-  font-variation-settings: 'wdth' 118;
+  font-variation-settings: 'wdth' var(--wdth-ui);
   font-weight: 600;
   font-size: var(--t-micro);
-  letter-spacing: 0.16em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   opacity: 0;
   transform: translateX(-4px);

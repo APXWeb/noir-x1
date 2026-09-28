@@ -70,7 +70,8 @@
   white-space: nowrap;
   font-family: var(--font-mono);
   font-size: var(--t-micro);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
+  font-weight: 500;
   text-transform: uppercase;
   font-variant-numeric: tabular-nums slashed-zero;
   /* A graphite chip so the reading holds on metal as well as on the ground. */

@@ -6,10 +6,10 @@
   min-height: 48px;
   padding-block: var(--s-3);
   font-family: var(--font-display);
-  font-variation-settings: 'wdth' 120;
+  font-variation-settings: 'wdth' var(--wdth-ui);
   font-weight: 600;
   font-size: var(--t-small);
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ink);
   transition: transform var(--dur-press) var(--ease-out);

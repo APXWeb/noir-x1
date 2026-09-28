@@ -2,7 +2,7 @@
 .display {
   font-family: var(--font-display);
   font-variation-settings: 'wdth' var(--wdth-display);
-  font-weight: 560;
+  font-weight: 600;
   font-size: var(--t-display);
   line-height: 0.86;
   letter-spacing: -0.035em;
@@ -19,7 +19,7 @@
 .h2 {
   font-family: var(--font-display);
   font-variation-settings: 'wdth' var(--wdth-display);
-  font-weight: 540;
+  font-weight: 580;
   font-size: var(--t-h2);
   line-height: 0.9;
   letter-spacing: -0.03em;
@@ -29,8 +29,8 @@
 
 .h3 {
   font-family: var(--font-display);
-  font-variation-settings: 'wdth' 112;
-  font-weight: 480;
+  font-variation-settings: 'wdth' var(--wdth-ui);
+  font-weight: 560;
   font-size: var(--t-h3);
   line-height: 1.02;
   letter-spacing: -0.02em;
@@ -39,16 +39,18 @@
 
 .lead {
   font-size: var(--t-lead);
-  line-height: 1.45;
-  font-weight: 360;
+  line-height: 1.5;
+  font-weight: 420;
   color: var(--ink-2);
-  max-width: 34ch;
+  max-width: 38ch;
   text-wrap: pretty;
 }
 
 .body {
   color: var(--ink-2);
-  max-width: 44ch;
+  line-height: 1.6;
+  /* Reading measure stays well under ~65 characters. */
+  max-width: 52ch;
   text-wrap: pretty;
 }
 
@@ -56,8 +58,8 @@
 .measure {
   font-family: var(--font-mono);
   font-size: var(--t-micro);
-  font-weight: 450;
-  letter-spacing: 0.08em;
+  font-weight: 500;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   font-variant-numeric: tabular-nums slashed-zero;
   color: var(--ink-3);
@@ -67,10 +69,10 @@
 /* Label: small expanded caps for UI words that are not measurements. */
 .label {
   font-family: var(--font-display);
-  font-variation-settings: 'wdth' 118;
+  font-variation-settings: 'wdth' var(--wdth-ui);
   font-size: var(--t-micro);
   font-weight: 600;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ink-3);
   line-height: 1.4;

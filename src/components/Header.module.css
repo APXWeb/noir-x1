@@ -58,10 +58,10 @@
   display: inline-block;
   padding-block: var(--s-3);
   font-family: var(--font-display);
-  font-variation-settings: 'wdth' 118;
+  font-variation-settings: 'wdth' var(--wdth-ui);
   font-size: var(--t-micro);
-  font-weight: 560;
-  letter-spacing: 0.16em;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ink-2);
   transition: color 200ms ease;
@@ -100,15 +100,15 @@
   gap: 0.55em;
   padding: var(--s-3) 0;
   font-family: var(--font-display);
-  font-variation-settings: 'wdth' 118;
+  font-variation-settings: 'wdth' var(--wdth-ui);
   font-size: var(--t-micro);
   font-weight: 600;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .explore > span[aria-hidden] {
-  font-weight: 300;
+  font-weight: 400;
   transition: transform 360ms var(--ease-out);
 }
 
@@ -207,10 +207,10 @@
     min-height: 52px;
     border: var(--hairline) solid var(--rule-strong);
     font-family: var(--font-display);
-    font-variation-settings: 'wdth' 118;
+    font-variation-settings: 'wdth' var(--wdth-ui);
     font-size: var(--t-micro);
     font-weight: 600;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     animation: sheet-in 620ms var(--ease-out) 300ms both;
   }

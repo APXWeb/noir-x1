@@ -40,8 +40,8 @@ body {
   font-family: var(--font-body);
   font-size: var(--t-body);
   font-variation-settings: 'wdth' var(--wdth-body);
-  line-height: 1.55;
-  font-weight: 380;
+  line-height: 1.6;
+  font-weight: 420;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;

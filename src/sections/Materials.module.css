@@ -114,10 +114,10 @@
 
 .optionName {
   font-family: var(--font-display);
-  font-variation-settings: 'wdth' 118;
+  font-variation-settings: 'wdth' var(--wdth-ui);
   font-size: var(--t-micro);
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
