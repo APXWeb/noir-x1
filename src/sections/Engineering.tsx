@@ -39,9 +39,9 @@ export function Engineering() {
   return (
     <section ref={ref} id="craft" className={`scene ${styles.scene}`} data-theme="dark" aria-labelledby="craft-title">
       <div className="scene__frame">
-        <div className={styles.panel} data-panel>
-          <SplitLines as="h2" id="craft-title" className={`h2 ${styles.title}`} lines={['Engineered', 'to endure.']} />
-          <ol className={styles.record}>
+        <div className={styles.panel} data-panel data-has-active={active !== null}>
+          <SplitLines as="h2" id="craft-title" className={`h2 ${styles.title}`} lines={['Feito', 'para durar.']} />
+          <ol className={styles.record} data-has-active={active !== null}>
             {SPECS.map((s) => (
               <li key={s.id} className={styles.row} data-row data-active={active === s.id}>
                 <div className={styles.rowHead}>
@@ -57,12 +57,12 @@ export function Engineering() {
                     <p className="body">{s.body}</p>
                     {s.bulletin && (
                       <table className={styles.bulletin}>
-                        <caption className="label">Rate by position, s/day</caption>
+                        <caption className="label">Marcha por posição, s/dia</caption>
                         <tbody>
                           <tr>
-                            {s.bulletin.map(([pos]) => (
+                            {s.bulletin.map(([pos, , name]) => (
                               <th key={pos} scope="col" className="measure">
-                                {pos}
+                                <abbr title={name}>{pos}</abbr>
                               </th>
                             ))}
                           </tr>
@@ -81,7 +81,7 @@ export function Engineering() {
               </li>
             ))}
           </ol>
-          <p className={`label ${styles.note}`}>Concept specifications</p>
+          <p className={`label ${styles.note}`}>Especificações conceituais</p>
         </div>
       </div>
       <div className={styles.track} aria-hidden="true">

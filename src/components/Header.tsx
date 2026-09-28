@@ -77,11 +77,11 @@ export function Header() {
       data-solid={solid && !menu}
       data-menu={menu}
     >
-      <a href="#top" className={styles.logo} onClick={go('#top')} aria-label="NOIR — back to top">
+      <a href="#top" className={styles.logo} onClick={go('#top')} aria-label="NOIR, voltar ao início">
         <Wordmark />
       </a>
 
-      <nav className={styles.nav} aria-label="Primary">
+      <nav className={styles.nav} aria-label="Principal">
         <ul>
           {NAV.map((n) => (
             <li key={n.href}>
@@ -95,12 +95,12 @@ export function Header() {
 
       <button type="button" className={styles.explore} onClick={explore}>
         <span aria-hidden="true">[</span>
-        <span className={styles.exploreLabel}>Explore</span>
+        <span className={styles.exploreLabel}>Explorar</span>
         <span aria-hidden="true">]</span>
       </button>
 
       <button type="button" className={styles.menuButton} aria-expanded={menu} aria-controls="mobile-menu" onClick={() => setMenu((m) => !m)}>
-        <span className="sr-only">{menu ? 'Close menu' : 'Open menu'}</span>
+        <span className="sr-only">{menu ? 'Fechar menu' : 'Abrir menu'}</span>
         <span className={styles.menuBars} aria-hidden="true" />
       </button>
 
@@ -115,7 +115,7 @@ export function Header() {
           ))}
         </ul>
         <button type="button" className={styles.sheetExplore} onClick={explore}>
-          Explore the X1 in 3D
+          Explorar o X1 em 3D
         </button>
       </div>
     </header>

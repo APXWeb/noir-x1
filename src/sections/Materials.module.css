@@ -14,8 +14,8 @@
   font-family: var(--font-display);
   font-variation-settings: 'wdth' 125;
   font-weight: 620;
-  /* OBSIDIAN ≈ 6.1em at this weight */
-  font-size: clamp(3rem, 14.6vw, 20rem);
+  /* OBSIDIANA = 6.8em at this weight */
+  font-size: clamp(2.8rem, 13vw, 18rem);
   line-height: 0.8;
   letter-spacing: -0.045em;
   text-transform: uppercase;
@@ -149,7 +149,7 @@
     margin-top: 38svh;
   }
   .name {
-    font-size: min(14.4vw, 5rem);
+    font-size: min(13vw, 5rem);
   }
   .group {
     gap: var(--s-2);

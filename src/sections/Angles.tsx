@@ -18,9 +18,9 @@ export function Angles() {
     <section ref={ref} id="angles" className={`scene ${styles.scene}`} data-pose="rotate" data-theme="dark" aria-labelledby="angles-title">
       <div className="scene__frame">
         <div className={styles.text}>
-          <SplitLines as="h2" id="angles-title" className={`h2 ${styles.title}`} lines={['Seen from', 'every side.']} />
+          <SplitLines as="h2" id="angles-title" className={`h2 ${styles.title}`} lines={['Visto de', 'todos', 'os lados.']} />
           <p className="body" data-copy>
-            Turn it. The case is cut from a single billet, so there is no seam to find and no angle where it stops being one object.
+            Gire-o. A caixa sai de um único bloco: não há emenda para achar nem ângulo em que ela deixe de ser um objeto só.
           </p>
         </div>
       </div>

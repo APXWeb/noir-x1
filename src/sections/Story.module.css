@@ -16,8 +16,8 @@
 
 .title {
   grid-column: 1 / -1;
-  /* DOESN’T NEED + indent = 10.15em */
-  font-size: clamp(2.4rem, 8.6vw, 11rem);
+  /* SER BARULHENTA. = 11.5em */
+  font-size: clamp(2rem, 7.6vw, 10rem);
   color: var(--z0);
 }
 
@@ -141,7 +141,7 @@
     row-gap: var(--s-7);
   }
   .title {
-    font-size: 9vw;
+    font-size: 7.8vw;
   }
   .title > :global(.line):nth-child(2) {
     padding-left: 0.5em;

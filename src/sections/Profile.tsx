@@ -21,15 +21,15 @@ export function Profile() {
       <div className="scene__frame">
         <div className={styles.text} data-fade>
           <p className={styles.figure} data-figure aria-hidden="true">
-            11.4<span>mm</span>
+            11,4<span>mm</span>
           </p>
-          <SplitLines as="h2" id="profile-title" className={`h2 ${styles.title}`} lines={['Thin enough', 'to forget.']} />
+          <SplitLines as="h2" id="profile-title" className={`h2 ${styles.title}`} lines={['Fino a ponto', 'de esquecer.']} />
           <p className="body" data-copy>
-            Eleven point four millimetres from crystal to caseback. It slides under a cuff and stays there.
+            Onze vírgula quatro milímetros do cristal ao fundo. Desliza sob o punho da camisa e fica ali.
           </p>
         </div>
       </div>
-      <Callout kind="span" from="edgeTop" to="edgeBottom" side={-1} label="Height" value="11.4 mm" active={active} />
+      <Callout kind="span" from="edgeTop" to="edgeBottom" side={-1} label="Altura" value="11,4 mm" active={active} />
     </section>
   )
 }

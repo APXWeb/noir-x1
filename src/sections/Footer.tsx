@@ -8,10 +8,10 @@ export function Footer() {
     <footer className={styles.footer} data-theme="dark" data-pose="end">
       <div className={styles.top}>
         <Wordmark className={styles.mark} />
-        <p className={`body ${styles.claim}`}>Precision without compromise.</p>
+        <p className={`body ${styles.claim}`}>Precisão sem concessões.</p>
       </div>
       <div className={styles.bottom}>
-        <nav aria-label="Footer">
+        <nav aria-label="Rodapé">
           <ul className={styles.links}>
             {NAV.map((n) => (
               <li key={n.href}>
@@ -28,8 +28,8 @@ export function Footer() {
             ))}
           </ul>
         </nav>
-        <p className="label">NOIR is a fictional brand. All specifications are conceptual.</p>
-        <p className="label">Concept, 3D and experience by APX · 2026</p>
+        <p className="label">A NOIR é uma marca fictícia. Todas as especificações são conceituais.</p>
+        <p className="label">Conceito, 3D e experiência por APX · 2026</p>
       </div>
     </footer>
   )

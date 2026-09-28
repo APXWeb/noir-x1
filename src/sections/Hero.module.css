@@ -11,7 +11,7 @@
   position: relative;
   z-index: -1;
   align-self: center;
-  /* COMPROMISE. = 8.94em must clear the watch at 1024–1920px. */
+  /* CONCESSÕES. = 9.1em must clear the watch at 1024–1920px. */
   font-size: clamp(3.25rem, 6.2vw, 8rem);
   color: var(--z10);
 }
@@ -79,8 +79,8 @@
     align-self: end;
     /* On phones the words cross in front of the strap instead of behind it. */
     z-index: 2;
-    /* COMPROMISE. measures 8.94em in the display face. */
-    font-size: clamp(2.2rem, 10vw, 4.5rem);
+    /* CONCESSÕES. measures 9.1em in the display face. */
+    font-size: clamp(2.1rem, 9.6vw, 4.5rem);
   }
   .title > :global(.line):nth-child(2) {
     padding-left: 0.6em;

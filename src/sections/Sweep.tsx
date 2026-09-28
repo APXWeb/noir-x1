@@ -24,13 +24,13 @@ export function Sweep() {
     <section ref={ref} id="sweep" className={`scene ${styles.scene}`} data-pose="detail" data-theme="dark" aria-labelledby="sweep-title">
       <div className="scene__frame">
         <div className={styles.text} data-fade>
-          <SplitLines as="h2" id="sweep-title" className={`h2 ${styles.title}`} lines={['Eight beats', 'a second.']} />
+          <SplitLines as="h2" id="sweep-title" className={`h2 ${styles.title}`} lines={['Oito batidas', 'por segundo.']} />
           <p className="body" data-copy>
-            The seconds hand advances eight times every second. Close enough to continuous that it never appears to stop, and it is reading your time right now.
+            O ponteiro de segundos avança oito vezes a cada segundo. Tão perto do contínuo que nunca parece parar, e está marcando a sua hora agora.
           </p>
         </div>
       </div>
-      <Callout anchor="secondsTip" dx={mobile ? -70 : -150} dy={mobile ? -60 : -90} label="Sweep" value="28 800 vph · 8 Hz" active={active} />
+      <Callout anchor="secondsTip" dx={mobile ? -70 : -150} dy={mobile ? -60 : -90} label="Varredura" value="28.800 alt/h · 8 Hz" active={active} />
     </section>
   )
 }

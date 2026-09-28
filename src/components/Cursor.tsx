@@ -64,7 +64,7 @@ export function Cursor() {
   return (
     <div className={styles.cursor} aria-hidden="true" data-mode={mode}>
       <div ref={ring} className={styles.ring}>
-        <span className={styles.drag}>Drag</span>
+        <span className={styles.drag}>Arraste</span>
       </div>
       <div ref={dot} className={styles.dot} />
     </div>

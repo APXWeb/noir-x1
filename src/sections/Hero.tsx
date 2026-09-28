@@ -46,20 +46,20 @@ export function Hero() {
         id="hero-title"
         data-hero-title
         className={`display ${styles.title}`}
-        lines={['Precision', 'without', 'compromise.']}
+        lines={['Precisão', 'sem', 'concessões.']}
       />
       <div className={styles.meta} data-hero-leave>
         <p className="lead" data-hero-meta>
-          NOIR X1. A 41 mm automatic machined from a single titanium billet. Nothing on it is louder than it needs to be.
+          NOIR X1. Um automático de 41 mm usinado a partir de um único bloco de titânio. Nada nele fala mais alto do que precisa.
         </p>
         <div data-hero-meta>
           <Cta href="#x1" onClick={(e) => (e.preventDefault(), scrollToTarget('#x1'))}>
-            Discover X1
+            Descubra o X1
           </Cta>
         </div>
       </div>
       <div className={styles.cue} data-hero-cue aria-hidden="true">
-        <span className="label">Scroll</span>
+        <span className="label">Role</span>
         <span className={styles.cueLine} />
       </div>
     </section>

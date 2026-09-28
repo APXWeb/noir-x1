@@ -6,7 +6,8 @@
   display: grid;
   grid-template-rows: auto 1fr auto;
   height: 100%;
-  font-size: clamp(3rem, 12.4vw, 14rem);
+  /* CONSTRUÍDO = 8.4em */
+  font-size: clamp(2.6rem, 10.6vw, 12rem);
   white-space: nowrap;
 }
 
@@ -34,8 +35,8 @@
 
 @media (max-width: 767px) {
   .title {
-    /* PRECISION. = 7.05em */
-    font-size: min(12.4vw, 4rem);
+    /* CONSTRUÍDO = 8.4em */
+    font-size: min(10.4vw, 4rem);
   }
   .w2 {
     align-self: end;

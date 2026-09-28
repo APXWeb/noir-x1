@@ -19,24 +19,24 @@ export function Complete() {
   return (
     <section ref={ref} id="complete" className={`scene ${styles.scene}`} data-pose="reveal" data-theme="dark" aria-labelledby="complete-title">
       <h2 id="complete-title" className="sr-only">
-        Built around precision.
+        Construído sobre a precisão.
       </h2>
       {/* The words live on two planes: behind the watch, and in front of it. */}
       <div className="scene__frame scene__frame--back" aria-hidden="true">
         <p className={`display ${styles.title}`}>
           <span className={styles.w1} />
           <span className={styles.w2} data-depth="mid">
-            around
+            sobre a
           </span>
           <span className={styles.w3} data-depth="back">
-            precision.
+            precisão.
           </span>
         </p>
       </div>
       <div className="scene__frame" aria-hidden="true">
         <p className={`display ${styles.title}`}>
           <span className={styles.w1} data-depth="front">
-            Built
+            Construído
           </span>
         </p>
       </div>

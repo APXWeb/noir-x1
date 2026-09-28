@@ -46,6 +46,9 @@
 
 @media (max-width: 767px) {
   .scene__frame {
+    /* Clears the position readout that sits under the header on phones
+       (and the accents on capitals: Í, Ã, Õ). */
+    padding-top: calc(var(--header-h) + var(--s-8));
     padding-bottom: calc(var(--s-9) + var(--s-2));
   }
 }

@@ -112,14 +112,14 @@ export function ExploreOverlay() {
     <div ref={root} className={styles.overlay} role="dialog" aria-modal="true" aria-labelledby="explore-dialog-title">
       <div className={styles.top}>
         <h2 id="explore-dialog-title" className={`h3 ${styles.title}`}>
-          Explore the X1
+          Explore o X1
         </h2>
         <button type="button" className={styles.close} onClick={() => setMode('scroll')} data-autofocus>
-          <span className="label">Close</span>
+          <span className="label">Fechar</span>
           <svg viewBox="0 0 12 12" aria-hidden="true">
             <path d="M1 1l10 10M11 1 1 11" stroke="currentColor" strokeWidth="1" />
           </svg>
-          <span className="sr-only">explore mode (Escape)</span>
+          <span className="sr-only">o modo explorar (Esc)</span>
         </button>
       </div>
 
@@ -151,15 +151,15 @@ export function ExploreOverlay() {
         )}
       </div>
 
-      <div className={styles.controls} role="group" aria-label="View controls">
+      <div className={styles.controls} role="group" aria-label="Controles de visualização">
         {(
           [
-            ['left', 'Rotate left', 'M8 2 4 6l4 4'],
-            ['right', 'Rotate right', 'M4 2l4 4-4 4'],
-            ['up', 'Tilt up', 'M2 8l4-4 4 4'],
-            ['down', 'Tilt down', 'M2 4l4 4 4-4'],
-            ['in', 'Zoom in', 'M6 2v8M2 6h8'],
-            ['out', 'Zoom out', 'M2 6h8'],
+            ['left', 'Girar para a esquerda', 'M8 2 4 6l4 4'],
+            ['right', 'Girar para a direita', 'M4 2l4 4-4 4'],
+            ['up', 'Inclinar para cima', 'M2 8l4-4 4 4'],
+            ['down', 'Inclinar para baixo', 'M2 4l4 4 4-4'],
+            ['in', 'Aproximar', 'M6 2v8M2 6h8'],
+            ['out', 'Afastar', 'M2 6h8'],
           ] as const
         ).map(([cmd, label, d]) => (
           <button key={cmd} type="button" className={styles.ctrl} aria-label={label} onClick={() => exploreBus.emit(cmd)}>
@@ -174,15 +174,15 @@ export function ExploreOverlay() {
             setExploded(!exploded)
           }}
         >
-          <span className="label">Exploded view</span>
+          <span className="label">Vista explodida</span>
         </button>
         <button type="button" className={`${styles.ctrl} ${styles.reset}`} onClick={() => exploreBus.emit('reset')}>
-          <span className="label">Reset</span>
+          <span className="label">Redefinir</span>
         </button>
       </div>
 
       <p className={`label ${styles.hint}`} data-show={hint} aria-hidden="true">
-        Drag to rotate · Pinch or scroll to zoom · Select a point
+        Arraste para girar · Pince ou role para aproximar · Escolha um ponto
       </p>
     </div>
   )

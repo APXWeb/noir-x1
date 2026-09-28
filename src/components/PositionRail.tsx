@@ -30,7 +30,7 @@ export function PositionRail() {
   const label = poseOf(pose).label
 
   return (
-    <aside className={styles.rail} data-hidden={mode === 'explore' || !introDone || atEnd || (poseOf(pose).stage ?? 1) === 0} aria-label="Scenes">
+    <aside className={styles.rail} data-hidden={mode === 'explore' || !introDone || atEnd || (poseOf(pose).stage ?? 1) === 0} aria-label="Cenas">
       <p className={styles.readout} aria-live="off">
         <span className="measure">
           Pos. <span className={styles.num}>{String(active + 1).padStart(2, '0')}</span>
@@ -50,7 +50,7 @@ export function PositionRail() {
               onClick={() => scrollToTarget(`#${s.id}`)}
             >
               <span className="sr-only">
-                Go to scene {i + 1}: {s.title}
+                Ir para a cena {i + 1}: {s.title}
               </span>
             </button>
           </li>

@@ -22,7 +22,8 @@
 }
 
 .title {
-  font-size: clamp(2.5rem, 1rem + 4vw, 5.5rem);
+  /* PARA DURAR. = 8.4em inside a 34rem column */
+  font-size: clamp(2.25rem, 0.8rem + 3.2vw, 4.5rem);
 }
 
 .record {
@@ -86,6 +87,10 @@
 .bulletin td {
   color: var(--ink) !important;
 }
+.bulletin abbr {
+  text-decoration: none;
+  cursor: help;
+}
 
 .row[data-active='true'] .rowHead :global(.measure),
 .row[data-active='true'] .rowHead :global(.label) {
@@ -143,7 +148,20 @@
   .row :global(.body) {
     font-size: var(--t-small);
   }
-  /* On phones only the reading under test is shown; the rest collapse to rows. */
+  /* On phones only the reading under test is shown; the others step out. */
+  .record[data-has-active='true'] .row:not([data-active='true']) {
+    display: none;
+  }
+  /* The section title introduces the record; once a reading is under test it
+     steps aside visually (still announced) so the panel clears the watch. */
+  .panel[data-has-active='true'] .title {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
   .note {
     display: none;
   }

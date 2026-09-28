@@ -43,7 +43,7 @@ export function Materials() {
 
         <div className={styles.controls} data-controls>
           <h2 id="materials-title" className={`h3 ${styles.title}`}>
-            Four finishes. One object.
+            Quatro acabamentos. Um objeto.
           </h2>
           <div role="radiogroup" aria-labelledby="materials-title" className={styles.group}>
             {FINISHES.map((f, i) => {

@@ -22,14 +22,14 @@ export function Approach() {
       <div className="scene__frame">
         <h2 id="approach-title" className={`display plane-front ${styles.title}`}>
           <span data-word className={styles.top}>
-            Nothing
+            Nada
           </span>{' '}
           <span data-word className={styles.bottom}>
-            extra.
+            a mais.
           </span>
         </h2>
         <p className={`lead ${styles.copy}`} data-copy>
-          The X1 does one thing without interruption: it keeps time. Everything else was removed until only that remained.
+          O X1 faz uma coisa sem interrupção: marca o tempo. Todo o resto foi retirado até sobrar só isso.
         </p>
       </div>
     </section>

@@ -1,21 +1,21 @@
-/** Brand story. NOIR is fictional; this is authored world-building, not history. */
+/** História da marca. A NOIR é fictícia: isto é construção de mundo, não histórico. */
 export const STORY = {
-  title: ['Precision', 'doesn’t need', 'to be loud.'],
-  intro: 'NOIR began with three people, one lathe and a disagreement: does a watch need to announce itself? We decided it doesn’t.',
+  title: ['Precisão', 'não precisa', 'ser barulhenta.'],
+  intro: 'A NOIR começou com três pessoas, um torno e uma discordância: um relógio precisa se anunciar? Decidimos que não.',
   paragraphs: [
-    'So we took things away. Numerals, slogans, colour, noise. What stayed had to earn its place by being measured, and every part of the X1 was, twice.',
-    'We still build slowly. Five hundred X1s a year, each one run through six positions before it carries the name.',
+    'Então fomos tirando. Numerais, slogans, cor, ruído. O que ficou teve de merecer o lugar sendo medido, e cada peça do X1 foi medida duas vezes.',
+    'Ainda fazemos devagar. Quinhentos X1 por ano, cada um testado em seis posições antes de levar o nome.',
   ],
-  quote: 'Quiet is a specification.',
-  caption: 'Calibre N-01, seen through the caseback',
+  quote: 'Silêncio também é especificação.',
+  caption: 'Calibre N-01, visto pelo fundo',
   timeline: [
-    ['2021', 'The first case is cut, and scrapped.'],
-    ['2023', 'Calibre N-01 runs seventy-two hours on its own.'],
-    ['2026', 'The X1.'],
+    ['2021', 'A primeira caixa é usinada. E descartada.'],
+    ['2023', 'O Calibre N-01 funciona setenta e duas horas sozinho.'],
+    ['2026', 'O X1.'],
   ] as [string, string][],
   images: {
-    crown: 'The X1’s knurled crown and pushers, lit from the side against black.',
-    caseback: 'The X1 caseback: engraved titanium ring around a sapphire window showing the rotor.',
-    dial: 'The X1 dial at a grazing angle, sunray finish catching a single highlight.',
+    crown: 'A coroa serrilhada e os botões do X1, com luz lateral sobre fundo preto.',
+    caseback: 'O fundo do X1: anel de titânio gravado em volta de uma janela de safira que mostra o movimento.',
+    dial: 'O mostrador do X1 em ângulo rasante, o acabamento sunray pegando um único reflexo.',
   },
 }

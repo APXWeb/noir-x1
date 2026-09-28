@@ -20,21 +20,21 @@ export function Finale() {
       <div className="scene__frame scene__frame--back">
         <h2 id="finale-title" className={`display ${styles.title}`}>
           <span data-word className={styles.l1}>
-            Time,
+            Tempo,
           </span>{' '}
           <span data-word className={styles.l2}>
-            refined.
+            refinado.
           </span>
         </h2>
       </div>
       <div className="scene__frame">
         <div className={styles.actions}>
           <div data-act>
-            <Cta onClick={() => setMode('explore')}>Explore NOIR X1</Cta>
+            <Cta onClick={() => setMode('explore')}>Explorar o NOIR X1</Cta>
           </div>
           <div data-act>
             <Cta variant="quiet" href="#top" onClick={(e) => (e.preventDefault(), scrollToTarget('#top'))}>
-              Back to the beginning
+              Voltar ao início
             </Cta>
           </div>
         </div>

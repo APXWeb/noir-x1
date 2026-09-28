@@ -133,7 +133,7 @@ export function createDialTexture(style: DialStyle = 'calibre', size = 2048) {
   setFont(ctx, 420, size * 0.0135, MONO)
   if ('letterSpacing' in ctx) (ctx as CanvasRenderingContext2D & { letterSpacing: string }).letterSpacing = `${size * 0.003}px`
   ctx.fillStyle = p.faint
-  ctx.fillText(style === 'abyss' ? 'AUTOMATIC · 300 M' : 'AUTOMATIC · 100 M', cx, cx + R * 0.47)
+  ctx.fillText(style === 'abyss' ? 'AUTOMÁTICO · 300 M' : 'AUTOMÁTICO · 100 M', cx, cx + R * 0.47)
 
   // Meridian: printed 24-hour inner track.
   if (style === 'meridian') {
@@ -152,7 +152,7 @@ export function createDialTexture(style: DialStyle = 'calibre', size = 2048) {
   setFont(ctx, 460, size * 0.0115, MONO)
   if ('letterSpacing' in ctx) (ctx as CanvasRenderingContext2D & { letterSpacing: string }).letterSpacing = '0px'
   ctx.fillStyle = p.faint
-  arcText(ctx, 'TESTED IN SIX POSITIONS', cx, cx, R * 0.86, Math.PI, size * 0.003, false)
+  arcText(ctx, 'TESTADO EM SEIS POSIÇÕES', cx, cx, R * 0.86, Math.PI, size * 0.003, false)
 
   return toTexture(c, { name: `dial-${style}` })
 }
@@ -302,7 +302,7 @@ export function createCasebackTexture(size = 1024) {
   }
   ctx.fillStyle = '#2b2d30'
   setFont(ctx, 520, size * 0.028, MONO)
-  const text = 'NOIR X1 · CONCEPT SPECIFICATION · TITANIUM GRADE 5 · SAPPHIRE · 100 M · Nº 001 / 500 · '
+  const text = 'NOIR X1 · ESPECIFICAÇÃO CONCEITUAL · TITÂNIO GRAU 5 · SAFIRA · 100 M · Nº 001 / 500 · '
   arcText(ctx, text, cx, cx, 1.44 * scale, 0, size * 0.0035, true)
   // Engraved hairlines framing the text band.
   ctx.strokeStyle = 'rgba(30,31,33,0.8)'
@@ -356,7 +356,7 @@ export function createMovementTexture(size = 1024) {
   ctx.textAlign = 'center'
   ctx.fillText('NOIR CALIBRE N-01', size / 2, size * 0.78)
   setFont(ctx, 420, size * 0.022, MONO)
-  ctx.fillText('31 JEWELS · 28 800 VPH · UNADJUSTED FOR SHOW', size / 2, size * 0.82)
+  ctx.fillText('31 RUBIS · 28.800 A/H · AUTOMÁTICO', size / 2, size * 0.82)
   return toTexture(c, { name: 'movement' })
 }
 

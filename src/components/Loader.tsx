@@ -73,7 +73,7 @@ export function Loader({ webgl, reduced }: { webgl: boolean; reduced: boolean })
   const lit = Math.round((shown / 100) * 60)
 
   return (
-    <div ref={root} className={styles.loader} role="status" aria-live="polite" aria-label={`Loading experience, ${pct} percent`}>
+    <div ref={root} className={styles.loader} role="status" aria-live="polite" aria-label={`Carregando a experiência, ${pct} por cento`}>
       <div className={styles.center}>
         <svg className={styles.ring} viewBox="0 0 200 200" aria-hidden="true" data-loader-ring>
           {Array.from({ length: 60 }, (_, i) => (
@@ -95,7 +95,7 @@ export function Loader({ webgl, reduced }: { webgl: boolean; reduced: boolean })
       </div>
       <div className={styles.meta}>
         <span className="label" data-loader-meta>
-          Calibrating
+          Calibrando
         </span>
         <span className={`measure ${styles.pct}`} data-loader-meta aria-hidden="true">
           {String(pct).padStart(3, '0')}

@@ -20,15 +20,15 @@ export function ExploreIntro() {
     <section ref={ref} id="explore" className={`scene ${styles.scene}`} data-pose="explore" data-theme="dark" aria-labelledby="explore-title">
       <div className="scene__frame">
         <div className={styles.text} data-fade>
-          <SplitLines as="h2" id="explore-title" className={`h2 ${styles.title}`} lines={['Explore', 'the X1.']} />
+          <SplitLines as="h2" id="explore-title" className={`h2 ${styles.title}`} lines={['Explore', 'o X1.']} />
           <p className="body" data-copy>
-            Turn it, bring it close, read its parts. The same model you have been watching, now in your hands.
+            Gire, aproxime, leia cada peça. O mesmo modelo que você vem acompanhando, agora nas suas mãos.
           </p>
           <div data-copy>
-            <Cta onClick={() => setMode('explore')}>Enter explore mode</Cta>
+            <Cta onClick={() => setMode('explore')}>Entrar no modo explorar</Cta>
           </div>
           <p className="label" data-copy>
-            Drag · Pinch or scroll · Arrow keys
+            Arraste · Pince ou role · Setas do teclado
           </p>
         </div>
       </div>

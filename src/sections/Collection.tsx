@@ -48,7 +48,7 @@ export function Collection() {
   return (
     <section id="collection" className={styles.collection} data-theme="dark" aria-labelledby="collection-title">
       <h2 id="collection-title" className="sr-only">
-        Collection
+        Coleção
       </h2>
       {VARIANTS.map((v) => (
         <Panel key={v.id} v={v} />

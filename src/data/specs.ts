@@ -1,4 +1,4 @@
-/** Engineering readings. Concept specifications for a fictional product. */
+/** Leituras de engenharia. Especificações conceituais de um produto fictício. */
 export interface Spec {
   id: string
   pose: string
@@ -7,8 +7,8 @@ export interface Spec {
   body: string
   reading: string
   anchor: string
-  /** Optional certification bulletin: [position, daily rate]. */
-  bulletin?: [string, string][]
+  /** Boletim de certificação: [sigla da posição, marcha diária, posição por extenso]. */
+  bulletin?: [string, string, string][]
   /** Leader direction for the graticule (px) on desktop. */
   dx: number
   dy: number
@@ -18,10 +18,10 @@ export const SPECS: Spec[] = [
   {
     id: 'case',
     pose: 'eng-case',
-    term: 'Case',
-    title: 'Titanium Grade 5',
-    body: 'Cut from a single billet, bead-blasted, then hand-polished along every chamfer. Forty percent lighter than steel and harder to mark.',
-    reading: 'Ti-6Al-4V · 41.0 mm',
+    term: 'Caixa',
+    title: 'Titânio Grau 5',
+    body: 'Usinada a partir de um único bloco, jateada e polida à mão em cada chanfro. Quarenta por cento mais leve que o aço, e mais difícil de marcar.',
+    reading: 'Ti-6Al-4V · 41,0 mm',
     anchor: 'lug',
     dx: 160,
     dy: -70,
@@ -29,9 +29,9 @@ export const SPECS: Spec[] = [
   {
     id: 'sapphire',
     pose: 'eng-sapphire',
-    term: 'Sapphire',
-    title: 'Sapphire crystal',
-    body: 'Domed, nine on the Mohs scale, anti-reflective on the inside only, so the dial reads black and the dome still catches the light.',
+    term: 'Safira',
+    title: 'Cristal de safira',
+    body: 'Abaulado, nove na escala Mohs, com antirreflexo só na face interna: o mostrador lê preto e a cúpula ainda pega a luz.',
     reading: 'Al₂O₃ · 9 Mohs',
     anchor: 'crystal',
     dx: 170,
@@ -40,18 +40,18 @@ export const SPECS: Spec[] = [
   {
     id: 'movement',
     pose: 'eng-movement',
-    term: 'Movement',
-    title: 'Precision automatic movement',
-    body: 'Calibre N-01: seventy-two hours of reserve, a free-sprung balance, and a rotor you can watch through the caseback.',
-    reading: '28 800 vph · 72 h',
+    term: 'Movimento',
+    title: 'Movimento automático de precisão',
+    body: 'Calibre N-01: setenta e duas horas de reserva, balanço de espiral livre e um rotor que se vê pelo fundo.',
+    reading: '28.800 alt/h · 72 h',
     anchor: 'caseback',
     bulletin: [
-      ['DU', '+1.2'],
-      ['DD', '+0.8'],
-      ['CU', '−0.4'],
-      ['CD', '+0.6'],
-      ['CL', '+1.0'],
-      ['CR', '−0.2'],
+      ['MA', '+1,2', 'Mostrador acima'],
+      ['MB', '+0,8', 'Mostrador abaixo'],
+      ['CA', '−0,4', 'Coroa acima'],
+      ['CB', '+0,6', 'Coroa abaixo'],
+      ['CE', '+1,0', 'Coroa à esquerda'],
+      ['CD', '−0,2', 'Coroa à direita'],
     ],
     dx: 190,
     dy: 80,
@@ -59,9 +59,9 @@ export const SPECS: Spec[] = [
   {
     id: 'water',
     pose: 'eng-water',
-    term: 'Water resistance',
-    title: '100 M',
-    body: 'A screw-down crown seated on twin gaskets. Pressure-tested to ten bar, then tested again before it leaves.',
+    term: 'Resistência à água',
+    title: '100 m',
+    body: 'Coroa de rosca assentada sobre duas juntas. Testada a dez bar e testada de novo antes de sair.',
     reading: '10 bar · ISO 22810',
     anchor: 'crown',
     dx: 150,

@@ -1,4 +1,4 @@
-/** Explore-mode hotspots, anchored to named 3D points (three/anchors.ts). */
+/** Hotspots do modo explorar, presos a pontos 3D nomeados (three/points.ts). */
 export interface Hotspot {
   id: string
   anchor: string
@@ -7,12 +7,12 @@ export interface Hotspot {
 }
 
 export const HOTSPOTS: Hotspot[] = [
-  { id: 'crown', anchor: 'crown', name: 'Crown', line: 'Machined for precise tactile control. It screws down onto twin gaskets.' },
-  { id: 'pusher', anchor: 'pusher', name: 'Pushers', line: 'Move the hour hand between time zones without stopping the seconds.' },
-  { id: 'bezel', anchor: 'bezel', name: 'Bezel', line: 'Ceramic insert, 120 clicks, laser-engraved minutes. It will not fade.' },
-  { id: 'crystal', anchor: 'crystal', name: 'Sapphire', line: 'Domed and coated on the inside only, so the dial stays black and the dome keeps its light.' },
-  { id: 'dial', anchor: 'dial', name: 'Dial', line: 'Sunray finish beneath eleven applied indices and a doubled twelve.' },
-  { id: 'lug', anchor: 'lug', name: 'Lugs', line: 'Curved to follow the wrist. Brushed faces, polished chamfers.' },
-  { id: 'caseback', anchor: 'caseback', name: 'Caseback', line: 'An exhibition window onto calibre N-01 and its rotor.' },
-  { id: 'strap', anchor: 'strap', name: 'Strap', line: 'FKM rubber with a ribbed underside, closed by a titanium tang buckle.' },
+  { id: 'crown', anchor: 'crown', name: 'Coroa', line: 'Usinada para um controle tátil preciso. Rosqueia sobre duas juntas.' },
+  { id: 'pusher', anchor: 'pusher', name: 'Botões', line: 'Levam o ponteiro das horas de um fuso a outro sem parar os segundos.' },
+  { id: 'bezel', anchor: 'bezel', name: 'Luneta', line: 'Inserto cerâmico, 120 cliques, minutos gravados a laser. Não desbota.' },
+  { id: 'crystal', anchor: 'crystal', name: 'Safira', line: 'Abaulada e tratada só por dentro: o mostrador continua preto e a cúpula guarda a luz.' },
+  { id: 'dial', anchor: 'dial', name: 'Mostrador', line: 'Acabamento sunray sob onze índices aplicados e um doze duplo.' },
+  { id: 'lug', anchor: 'lug', name: 'Alças', line: 'Curvadas para acompanhar o pulso. Faces escovadas, chanfros polidos.' },
+  { id: 'caseback', anchor: 'caseback', name: 'Fundo', line: 'Uma janela para o Calibre N-01, com pontes, engrenagens e rotor à vista.' },
+  { id: 'strap', anchor: 'strap', name: 'Pulseira', line: 'Borracha FKM com a face interna nervurada, fechada por uma fivela de titânio.' },
 ]

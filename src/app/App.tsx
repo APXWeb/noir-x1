@@ -47,7 +47,7 @@ function Experience() {
   return (
     <>
       <a className="skip-link" href="#main">
-        Skip to content
+        Pular para o conteúdo
       </a>
       <Loader webgl={webgl} reduced={reduced} />
       <Header />

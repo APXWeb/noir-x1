@@ -27,83 +27,83 @@ type PoseTable = Record<string, Pose>
 
 const desktop: PoseTable = {
   hero: {
-    label: 'Dial up',
+    label: 'Mostrador acima',
     watch: { pos: [3.4, -0.2, 0], rot: [-12, -28, 7] },
     cam: { pos: [0, 0, 13], target: [0, 0, 0] },
     key: 20,
   },
   approach: {
-    label: 'Dial up · close',
+    label: 'Mostrador acima · perto',
     watch: { pos: [0.9, -0.05, 0], rot: [-4, 6, 0] },
     cam: { pos: [0, 0, 10.2], target: [0, 0, 0] },
     key: 40,
   },
   rotate: {
-    label: 'Crown up',
+    label: 'Coroa acima',
     watch: { pos: [-2.1, 0, 0], rot: [-6, -72, 0] },
     cam: { pos: [0, 0, 11.5], target: [0, 0, 0] },
     key: -30,
   },
   detail: {
-    label: 'Dial up · seconds',
+    label: 'Mostrador acima · segundos',
     watch: { pos: [0.4, 0, 0], rot: [-10, 12, 0] },
     cam: { pos: [1.6, 1.2, 4.6], target: [0.9, 0.55, 0.2] },
     key: 60,
   },
   profile: {
-    label: 'Crown right · edge',
+    label: 'Coroa à direita · perfil',
     watch: { pos: [-2.15, -0.1, 0], rot: [-84, 0, -6] },
     cam: { pos: [0, 0.3, 9.4], target: [0, 0, 0] },
     key: 10,
     strap: 0,
   },
   'eng-case': {
-    label: 'Case · lugs',
+    label: 'Caixa · alças',
     watch: { pos: [2.45, 0.1, 0], rot: [-24, -48, 10] },
     cam: { pos: [0, 0, 9.6], target: [0, 0, 0] },
     key: -20,
   },
   'eng-sapphire': {
-    label: 'Crystal · grazing',
+    label: 'Cristal · rasante',
     watch: { pos: [1.95, -0.5, 0], rot: [-66, -14, 0] },
     cam: { pos: [0, 0.8, 9.2], target: [0, 0, 0] },
     key: 80,
   },
   'eng-movement': {
-    label: 'Dial down',
+    label: 'Mostrador abaixo',
     watch: { pos: [2.35, 0, 0], rot: [4, 198, -6] },
     cam: { pos: [0, 0, 8.8], target: [0, 0, 0] },
     key: 150,
     strap: 0,
   },
   'eng-water': {
-    label: 'Crown up · seal',
+    label: 'Coroa acima · vedação',
     watch: { pos: [1.7, 0, 0], rot: [-8, -96, 0] },
     cam: { pos: [0, 0, 7.6], target: [0, 0, 0] },
     key: -40,
   },
   materials: {
-    label: 'Dial up · finish',
+    label: 'Mostrador acima · acabamento',
     watch: { pos: [1.9, 0, 0], rot: [-14, -30, 4] },
     cam: { pos: [0, 0, 12], target: [0, 0, 0] },
     key: 30,
     spin: 1,
   },
   reveal: {
-    label: 'Complete',
+    label: 'Completo',
     watch: { pos: [0, 0.7, 1.9], rot: [22, -34, 0] },
     cam: { pos: [0, 0, 16.5], target: [0, 0, 0] },
     key: 45,
   },
   explore: {
-    label: 'Invitation',
+    label: 'Convite',
     watch: { pos: [2.3, 0, 0], rot: [-16, -40, 6] },
     cam: { pos: [0, 0, 12.5], target: [0, 0, 0] },
     key: 30,
     spin: 0.5,
   },
   'explore-mode': {
-    label: 'Free',
+    label: 'Livre',
     watch: { pos: [0, 0, 0], rot: [-10, -22, 0] },
     cam: { pos: [0, 0, 13], target: [0, 0, 0] },
     key: 30,
@@ -151,13 +151,13 @@ const desktop: PoseTable = {
     variant: 'x3',
   },
   story: {
-    label: 'At rest',
+    label: 'Em repouso',
     watch: { pos: [0, -1.5, -4], rot: [-60, 20 + 720, 0] },
     cam: { pos: [0, 0, 14], target: [0, 0, 0] },
     stage: 0,
   },
   finale: {
-    label: 'Dial up · final',
+    label: 'Mostrador acima · final',
     watch: { pos: [0, 0.2, 0], rot: [-20, -16 + 720, 0] },
     cam: { pos: [0, -1.1, 18], target: [0, 0.05, 0] },
     key: 90,
@@ -169,7 +169,7 @@ const desktop: PoseTable = {
 
 // The footer is an anchor too: the stage fades out as it rises, so the finale's
 // CTAs never slide across the dial.
-desktop.end = { ...desktop.finale, label: 'Complete', stage: 0 }
+desktop.end = { ...desktop.finale, label: 'Completo', stage: 0 }
 
 /** Mobile overrides: the watch leads from the upper half, text lives below. */
 const mobileOverrides: Partial<Record<string, Partial<Pose>>> = {
